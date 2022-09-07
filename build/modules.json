@@ -1,0 +1,21 @@
+{
+	"geiryn": {
+		"scripts": [
+			"src/geiryn.js"
+		]
+	},
+	"geiryn.test": {
+		"scripts": [
+			"tests/geiryn.test.js"
+		],
+		"dependencies": [
+			"geiryn"
+		]
+	},
+	"geiryn.test.browser": {
+		"dependencies": [
+			"qunit",
+			"geiryn.test"
+		]
+	}
+}

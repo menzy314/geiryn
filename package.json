@@ -1,0 +1,35 @@
+{
+	"name": "geiryn",
+	"version": "1.0.0",
+	"description": "Word game",
+	"main": "index.js",
+	"scripts": {
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "repo"
+	},
+	"author": "Menzy",
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	],
+	"dependencies": {
+		"eslint-config-wikimedia": "^0.23.0",
+		"eslint-plugin-html": "^7.1.0",
+		"grunt": "^1.5.3",
+		"grunt-banana-checker": "^0.10.0",
+		"grunt-cli": "^1.4.3",
+		"grunt-contrib-clean": "^2.0.1",
+		"grunt-eslint": "^24.0.0",
+		"grunt-karma": "^4.0.2",
+		"grunt-stylelint": "^0.18.0",
+		"karma-chrome-launcher": "^3.1.1",
+		"karma-qunit": "^4.1.2",
+		"qunit": "^2.19.1",
+		"stringify-object": "^4.0.1"
+	}
+}
