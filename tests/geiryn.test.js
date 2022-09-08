@@ -9,18 +9,13 @@
 QUnit.module( 'geiryn' );
 
 QUnit.test( 'evaluate', function ( assert ) {
-	var cases = [
-		{ word: 'abcde', guess: 'vwyxz', expect: [ 0, 0, 0, 0, 0 ] },
-		{ word: 'abcde', guess: 'abcde', expect: [ 2, 2, 2, 2, 2 ] },
-		{ word: 'abcde', guess: 'eezzz', expect: [ 1, 0, 0, 0, 0 ] }
-	];
-	for ( var i = 0; i < cases.length; i++ ) {
-		var test = cases[ i ];
-		var result = geiryn.evaluate( test.word, test.guess );
-		assert.deepEqual(
-			result,
-			test.expect,
-			'guess ' + test.guess + ' for ' + test.word
-		);
+	function check( answer, guess, expect ) {
+		var result = geiryn.evaluate( answer, guess );
+		assert.deepEqual( result, expect, 'guess "' + guess + '" for answer "' + answer + '"' );
 	}
+
+	check( 'trade', 'ddeee', [ 1, 0, 0, 0, 1 ] );
+	check( 'force', 'force', [ 2, 2, 2, 2, 2 ] );
+	check( 'silly', 'doggo', [ 0, 0, 0, 0, 0 ] );
+	check( 'heart', 'hxxxx', [ 2, 0, 0, 0, 0 ] );
 } );
