@@ -15,9 +15,13 @@ geiryn = {};
  * @return {number[]} score for each letter, e.g. [ 0, 1, 2, 0, 0 ]
  */
 geiryn.evaluate = function ( word, guess ) {
-	// XXX this logic is nonsense. Replace with an actual algorithm!
-	if ( word[ 0 ] === guess[ 0 ] ) {
-		return [ 2, 2, 2, 2, 2 ];
+	var scores = [ null, null, null, null, null ];
+	for ( var i = 0; i < word.length; i++ ) {
+		if ( word[ i ] === guess[ i ] ) {
+			scores[ i ] = 2;
+		} else {
+			scores[ i ] = 0;
+		}
 	}
-	return [ 0, 0, 0, 0, 0 ];
+	return scores;
 };
