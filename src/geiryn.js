@@ -15,10 +15,28 @@ geiryn = {};
  * @return {number[]} score for each letter, e.g. [ 0, 1, 2, 0, 0 ]
  */
 geiryn.evaluate = function ( word, guess ) {
+	var wordArray = word.split( '' );
+	var guessArray = guess.split( '' );
 	var scores = [ null, null, null, null, null ];
-	for ( var i = 0; i < word.length; i++ ) {
-		if ( word[ i ] === guess[ i ] ) {
+	// Find exact matches, and set matching letters to null
+	var i;
+	for ( i = 0; i < wordArray.length; i++ ) {
+		if ( wordArray[ i ] === guessArray[ i ] ) {
 			scores[ i ] = 2;
+			wordArray[ i ] = null;
+			guessArray[ i ] = null;
+		}
+	}
+	// Test each letter in guessArray for partial match
+	for ( i = 0; i < guessArray.length; i++ ) {
+		var letter = guessArray[ i ];
+		if ( letter === null ) {
+			continue;
+		}
+		var letterIndex = wordArray.indexOf( letter );
+		if ( letterIndex !== -1 ) {
+			scores[ i ] = 1;
+			wordArray[ letterIndex ] = null;
 		} else {
 			scores[ i ] = 0;
 		}

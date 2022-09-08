@@ -14,7 +14,7 @@ QUnit.test( 'evaluate', function ( assert ) {
 		assert.deepEqual( result, expect, 'guess "' + guess + '" for answer "' + answer + '"' );
 	}
 
-	check( 'trade', 'ddeee', [ 1, 0, 0, 0, 1 ] );
+	check( 'trade', 'ddeee', [ 1, 0, 0, 0, 2 ] );
 	check( 'force', 'force', [ 2, 2, 2, 2, 2 ] );
 	check( 'silly', 'doggo', [ 0, 0, 0, 0, 0 ] );
 	check( 'heart', 'hxxxx', [ 2, 0, 0, 0, 0 ] );
