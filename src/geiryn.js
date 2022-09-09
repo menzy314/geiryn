@@ -1,6 +1,20 @@
 geiryn = {};
 
 /**
+ * Check whether some text is in the word list
+ *
+ * @param {string} text The text to check
+ * @return {boolean} Whether the text is in the word list
+ */
+geiryn.isWord = function ( text ) {
+	if ( geiryn.wordlist.indexOf( text ) !== -1 ) {
+		return true;
+	} else {
+		return false;
+	}
+};
+
+/**
  * Evaluate a guess
  *
  * Returns an array with 0, 1 or 2 for each letter position.

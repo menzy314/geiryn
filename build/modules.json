@@ -1,7 +1,8 @@
 {
 	"geiryn": {
 		"scripts": [
-			"src/geiryn.js"
+			"src/geiryn.js",
+			"src/geiryn.wordlist.js"
 		]
 	},
 	"geiryn.test": {

@@ -8,6 +8,13 @@
 
 QUnit.module( 'geiryn' );
 
+QUnit.test( 'isWord', function ( assert ) {
+	var result = geiryn.isWord( 'abcde' );
+	assert.deepEqual( result, false, 'abcde is not a word' );
+	var result2 = geiryn.isWord( 'drums' );
+	assert.deepEqual( result2, true, 'drums is a word' );
+} );
+
 QUnit.test( 'evaluate', function ( assert ) {
 	function check( answer, guess, expect ) {
 		var result = geiryn.evaluate( answer, guess );
