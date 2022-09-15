@@ -35,10 +35,3 @@ QUnit.test( 'evaluate', function ( assert ) {
 	check( 'flare', 'rarer', [ 1, 1, 0, 1, 0 ] );
 	check( 'flare', 'reams', [ 1, 1, 2, 0, 0 ] );
 } );
-
-QUnit.test( 'geiryn.Model', function ( assert ) {
-	var m = new geiryn.Model( 'leery' );
-	assert.deepEqual( m.guesses, [], 'nothing guessed yet' );
-	assert.deepEqual( m.letterStates, {}, 'no letter states yet' );
-	assert.deepEqual( m.answer, 'leery', 'the answer is stored correctly' );
-} );

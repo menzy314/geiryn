@@ -2,12 +2,14 @@
 	"geiryn": {
 		"scripts": [
 			"src/geiryn.js",
+			"src/geiryn.Model.js",
 			"src/geiryn.wordlist.js"
 		]
 	},
 	"geiryn.test": {
 		"scripts": [
-			"tests/geiryn.test.js"
+			"tests/geiryn.test.js",
+			"tests/geiryn.Model.test.js"
 		],
 		"dependencies": [
 			"geiryn"
