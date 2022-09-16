@@ -4,14 +4,34 @@
 		<meta charset="UTF-8">
 		<title>Geiryn</title>
 		<style>
-			.keyboard-key {
+			.board {
+				text-align: center;
+				font-size: 200%;
+				font-family: sans-serif;
+				text-transform: capitalize;
+			}
+			.board-row {
+				margin: 0.3em;
+			}
+			.board-letter {
 				display: inline-block;
 				width: 1.5em;
-				height: 2em;
-				line-height: 2em;
+				height: 1.5em;
+				line-height: 1.5em;
 				border: solid gray 1px;
-				border-radius: 10px;
-				background-color: lightgray;
+				background-color: white;
+			}
+			.board-letter-0 {
+				background-color: darkgray;
+				color: white;
+			}
+			.board-letter-1 {
+				background-color: orange;
+				color: white;
+			}
+			.board-letter-2 {
+				background-color: green;
+				color: white;
 			}
 			.keyboard {
 				text-align: center;
@@ -21,21 +41,74 @@
 			.keyboard-row {
 				margin: 0.3em;
 			}
-			.keyboard-key-2 {
-				background-color: green;
+			.keyboard-key {
+				display: inline-block;
+				width: 1.5em;
+				height: 1.75em;
+				line-height: 1.75em;
+				border: solid gray 1px;
+				border-radius: 10px;
+				background-color: lightgray;
+			}
+			.keyboard-key-0 {
+				background-color: darkgray;
 				color: white;
 			}
 			.keyboard-key-1 {
 				background-color: orange;
 				color: white;
 			}
-			.keyboard-key-0 {
-				background-color: darkgray;
+			.keyboard-key-2 {
+				background-color: green;
 				color: white;
 			}
 		</style>
 	</head>
 	<body>
+		<div class="board">
+			<div class="board-row">
+				<div class="board-letter">q</div>
+				<div class="board-letter">w</div>
+				<div class="board-letter">e</div>
+				<div class="board-letter">r</div>
+				<div class="board-letter">t</div>
+			</div>
+			<div class="board-row">
+				<div class="board-letter board-letter-0">y</div>
+				<div class="board-letter">u</div>
+				<div class="board-letter">i</div>
+				<div class="board-letter">o</div>
+				<div class="board-letter">p</div>
+			</div>
+			<div class="board-row">
+				<div class="board-letter board-letter-1">A</div>
+				<div class="board-letter">S</div>
+				<div class="board-letter">D</div>
+				<div class="board-letter">F</div>
+				<div class="board-letter">G</div>
+			</div>
+			<div class="board-row">
+				<div class="board-letter">H</div>
+				<div class="board-letter">J</div>
+				<div class="board-letter board-letter-2">K</div>
+				<div class="board-letter board-letter-0">L</div>
+				<div class="board-letter">Z</div>
+			</div>
+			<div class="board-row">
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+			</div>
+			<div class="board-row">
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+				<div class="board-letter"></div>
+			</div>
+		</div>
 		<div class="keyboard">
 			<div class="keyboard-row">
 				<div class="keyboard-key">Q</div>
