@@ -22,7 +22,7 @@ module.exports = function ( grunt ) {
 				cache: true
 			},
 			main: [
-				'{src,tests}/**/*.{js,json}',
+				'{src,game,tests}/**/*.{js,json}',
 				'!package-lock.json',
 				'!node_modules/**'
 			]

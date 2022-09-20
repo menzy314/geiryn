@@ -4,10 +4,12 @@
 		<meta charset="UTF-8">
 		<title>Geiryn</title>
 		<style>
-			.board {
+			body {
 				text-align: center;
-				font-size: 200%;
 				font-family: sans-serif;
+			}
+			.board {
+				font-size: 200%;
 				text-transform: capitalize;
 			}
 			.board-row {
@@ -34,9 +36,7 @@
 				color: white;
 			}
 			.keyboard {
-				text-align: center;
 				font-size: 200%;
-				font-family: sans-serif;
 			}
 			.keyboard-row {
 				margin: 0.3em;
@@ -65,83 +65,11 @@
 		</style>
 	</head>
 	<body>
-		<div class="board">
-			<div class="board-row">
-				<div class="board-letter">q</div>
-				<div class="board-letter">w</div>
-				<div class="board-letter">e</div>
-				<div class="board-letter">r</div>
-				<div class="board-letter">t</div>
-			</div>
-			<div class="board-row">
-				<div class="board-letter board-letter-0">y</div>
-				<div class="board-letter">u</div>
-				<div class="board-letter">i</div>
-				<div class="board-letter">o</div>
-				<div class="board-letter">p</div>
-			</div>
-			<div class="board-row">
-				<div class="board-letter board-letter-1">A</div>
-				<div class="board-letter">S</div>
-				<div class="board-letter">D</div>
-				<div class="board-letter">F</div>
-				<div class="board-letter">G</div>
-			</div>
-			<div class="board-row">
-				<div class="board-letter">H</div>
-				<div class="board-letter">J</div>
-				<div class="board-letter board-letter-2">K</div>
-				<div class="board-letter board-letter-0">L</div>
-				<div class="board-letter">Z</div>
-			</div>
-			<div class="board-row">
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-			</div>
-			<div class="board-row">
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-				<div class="board-letter"></div>
-			</div>
-		</div>
-		<div class="keyboard">
-			<div class="keyboard-row">
-				<div class="keyboard-key">Q</div>
-				<div class="keyboard-key keyboard-key-0">W</div>
-				<div class="keyboard-key">E</div>
-				<div class="keyboard-key">R</div>
-				<div class="keyboard-key keyboard-key-1">T</div>
-				<div class="keyboard-key">Y</div>
-				<div class="keyboard-key">U</div>
-				<div class="keyboard-key">I</div>
-				<div class="keyboard-key">O</div>
-				<div class="keyboard-key keyboard-key-0">P</div>
-			</div>
-			<div class="keyboard-row">
-				<div class="keyboard-key keyboard-key-2">A</div>
-				<div class="keyboard-key keyboard-key-1">S</div>
-				<div class="keyboard-key">D</div>
-				<div class="keyboard-key">F</div>
-				<div class="keyboard-key">G</div>
-				<div class="keyboard-key keyboard-key-0">H</div>
-				<div class="keyboard-key">J</div>
-				<div class="keyboard-key">K</div>
-				<div class="keyboard-key">L</div>
-			</div>
-			<div class="keyboard-row">
-				<div class="keyboard-key">Z</div>
-				<div class="keyboard-key keyboard-key-2">X</div>
-				<div class="keyboard-key">C</div>
-				<div class="keyboard-key">V</div>
-				<div class="keyboard-key">B</div>
-				<div class="keyboard-key">N</div>
-				<div class="keyboard-key keyboard-key-0">M</div>
-			</div>
-		</div>
+		<h1>Geiryn</h1>
+		<div id="game"></div>
+		<script src="../src/geiryn.js"></script>
+		<script src="../src/geiryn.Model.js"></script>
+		<script src="../src/geiryn.wordlist.js"></script>
+		<script src="game.js"></script>
 	</body>
 </html>
