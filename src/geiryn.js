@@ -26,7 +26,7 @@ geiryn.isWord = function ( text ) {
  *
  * @param {string} word The word to find; must be five letters
  * @param {string} guess The guess; must be five letters
- * @return {number[]} score for each letter, e.g. [ 0, 1, 2, 0, 0 ]
+ * @return {object[]} array like [ { letter: 'x', score: 1 }, ... ]
  */
 geiryn.evaluate = function ( word, guess ) {
 	var wordArray = word.split( '' );
@@ -36,7 +36,7 @@ geiryn.evaluate = function ( word, guess ) {
 	var i;
 	for ( i = 0; i < wordArray.length; i++ ) {
 		if ( wordArray[ i ] === guessArray[ i ] ) {
-			scores[ i ] = 2;
+			scores[ i ] = { letter: wordArray[ i ], score: 2 };
 			wordArray[ i ] = null;
 			guessArray[ i ] = null;
 		}
@@ -49,10 +49,10 @@ geiryn.evaluate = function ( word, guess ) {
 		}
 		var letterIndex = wordArray.indexOf( letter );
 		if ( letterIndex !== -1 ) {
-			scores[ i ] = 1;
+			scores[ i ] = { letter: letter, score: 1 };
 			wordArray[ letterIndex ] = null;
 		} else {
-			scores[ i ] = 0;
+			scores[ i ] = { letter: letter, score: 0 };
 		}
 	}
 	return scores;

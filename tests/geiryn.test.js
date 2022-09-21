@@ -8,6 +8,16 @@
 
 QUnit.module( 'geiryn' );
 
+geiryn.buildLetterScores = function ( guess, numberArray ) {
+	var letterScores = [];
+	for ( var i = 0; i < numberArray.length; i++ ) {
+		var score = numberArray[ i ];
+		var letter = guess[ i ];
+		letterScores.push( { letter: letter, score: score } );
+	}
+	return letterScores;
+};
+
 QUnit.test( 'isWord', function ( assert ) {
 	var result = geiryn.isWord( 'abcde' );
 	assert.deepEqual( result, false, 'abcde is not a word' );
@@ -16,9 +26,10 @@ QUnit.test( 'isWord', function ( assert ) {
 } );
 
 QUnit.test( 'evaluate', function ( assert ) {
-	function check( answer, guess, expect ) {
+	function check( answer, guess, numberArray ) {
 		var result = geiryn.evaluate( answer, guess );
-		assert.deepEqual( result, expect, 'guess "' + guess + '" for answer "' + answer + '"' );
+		var expectArray = geiryn.buildLetterScores( guess, numberArray );
+		assert.deepEqual( result, expectArray, 'guess "' + guess + '" for answer "' + answer + '"' );
 	}
 
 	check( 'trade', 'ddeee', [ 1, 0, 0, 0, 2 ] );

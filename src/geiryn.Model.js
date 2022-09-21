@@ -6,7 +6,7 @@
  */
 geiryn.Model = function ( answer ) {
 	this.guesses = [];
-	this.letterStates = {};
+	this.keyStates = {};
 	this.answer = answer;
 };
 
@@ -22,14 +22,15 @@ geiryn.Model.prototype.guess = function ( text ) {
 	if ( geiryn.isWord( text ) === false ) {
 		return false;
 	}
-	this.guesses.push( text );
-	var scores = geiryn.evaluate( this.answer, text );
+	var scoredLetters = geiryn.evaluate( this.answer, text );
+	this.guesses.push( scoredLetters );
 	for ( var i = 0; i < 5; i++ ) {
-		var letter = text[ i ];
-		var score = scores[ i ];
-		var pastScore = this.letterStates[ letter ];
-		if ( pastScore === undefined || score > pastScore ) {
-			this.letterStates[ letter ] = score;
+		var scoredLetter = scoredLetters[ i ];
+		// Mae scoredLetter yn edrych fel hyn:
+		// { letter: 'q', score: 2 }
+		var pastScore = this.keyStates[ scoredLetter.letter ];
+		if ( pastScore === undefined || scoredLetter.score > pastScore ) {
+			this.keyStates[ scoredLetter.letter ] = scoredLetter.score;
 		}
 	}
 	return true;
