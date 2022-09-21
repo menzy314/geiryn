@@ -22,22 +22,13 @@ geiryn.demo = function () {
 	board.classList.add( 'board' );
 	game.appendChild( board );
 
-	var rowData1 = [
-		{ letter: 'n', score: 1 },
-		{ letter: 'o', score: 2 },
-		{ letter: 'o', score: 0 },
-		{ letter: 'k', score: 0 },
-		{ letter: 's', score: 2 }
-	];
-	var rowData2 = [
-		{ letter: 'c', score: 2 },
-		{ letter: 'o', score: 2 },
-		{ letter: 'i', score: 2 },
-		{ letter: 'n', score: 2 },
-		{ letter: 's', score: 2 }
-	];
+	var q = new geiryn.Model( 'trash' );
+	q.guess( 'sleep' );
+	q.guess( 'trade' );
+	q.guess( 'union' );
 
-	geiryn.createRow( board, rowData1 );
-	geiryn.createRow( board, rowData2 );
+	for ( var i = 0; i < q.guesses.length; i++ ) {
+		geiryn.createRow( board, q.guesses[ i ] );
+	}
 };
 geiryn.demo();
