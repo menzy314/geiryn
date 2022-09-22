@@ -3,7 +3,7 @@ geiryn.demo = function () {
 	m.guess( 'sleep' );
 	m.guess( 'trade' );
 	m.guess( 'union' );
-	m.guess( 'flash' );
+	m.guess( 'flats' );
 	var v = new geiryn.View( m );
 	v.draw();
 };

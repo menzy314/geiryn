@@ -14,29 +14,63 @@ geiryn.View = function ( model ) {
  */
 geiryn.View.prototype.draw = function () {
 	var game = document.getElementById( 'game' );
+
+	// Create board
 	var board = document.createElement( 'div' );
 	board.classList.add( 'board' );
-	game.appendChild( board );
-
 	for ( var i = 0; i < this.model.guesses.length; i++ ) {
-		this.createRow( board, this.model.guesses[ i ] );
+		this.createBoardRow( board, this.model.guesses[ i ] );
 	}
+
+	// Create keyboard
+	var keyboard = document.createElement( 'div' );
+	keyboard.classList.add( 'keyboard' );
+
+	this.createKeyboardRow( keyboard, 'qwertyuiop' );
+	this.createKeyboardRow( keyboard, 'asdfghjkl' );
+	this.createKeyboardRow( keyboard, 'zxcvbnm' );
+
+	// Attach to the top-level game div
+	game.appendChild( board );
+	game.appendChild( keyboard );
 };
 
-geiryn.View.prototype.createRow = function ( board, rowData ) {
+geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
 	var boardRow = document.createElement( 'div' );
 	boardRow.classList.add( 'board-row' );
 	board.appendChild( boardRow );
 	for ( var i = 0; i < rowData.length; i++ ) {
 		var item = rowData[ i ];
-		this.createLetter( boardRow, item.letter, item.score );
+		this.createBoardLetter( boardRow, item.letter, item.score );
 	}
 };
 
-geiryn.View.prototype.createLetter = function ( row, letter, score ) {
+geiryn.View.prototype.createBoardLetter = function ( row, letter, score ) {
 	var boardLetter = document.createElement( 'div' );
 	boardLetter.classList.add( 'board-letter' );
 	boardLetter.classList.add( 'board-letter-' + score );
 	row.appendChild( boardLetter );
 	boardLetter.innerText = letter;
+};
+
+geiryn.View.prototype.createKeyboardRow = function ( keyboard, rowLetters ) {
+	var keyboardRow = document.createElement( 'div' );
+	keyboardRow.classList.add( 'keyboard-row' );
+	keyboard.appendChild( keyboardRow );
+	for ( var i = 0; i < rowLetters.length; i++ ) {
+		var letter = rowLetters[ i ];
+		this.createKeyboardKey( keyboardRow, letter );
+	}
+};
+
+geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
+	var keyboardKey = document.createElement( 'div' );
+	var score = this.model.keyStates[ letter ];
+	keyboardKey.classList.add( 'keyboard-key' );
+	if ( score !== undefined ) {
+		keyboardKey.classList.add( 'keyboard-key-' + score );
+	}
+	keyboardRow.appendChild( keyboardKey );
+	keyboardKey.innerText = letter;
+
 };
