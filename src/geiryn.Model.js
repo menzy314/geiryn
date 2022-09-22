@@ -13,7 +13,6 @@ geiryn.Model = function ( answer ) {
 /**
  * Process user's guess.
  *
- *
  * @method
  * @param {string} text The guess
  * @return {boolean} Is text a word
