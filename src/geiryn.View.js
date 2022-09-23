@@ -6,7 +6,26 @@
  */
 geiryn.View = function ( model ) {
 	this.model = model;
+	window.addEventListener( 'keydown', this.onKeyDown.bind( this ) );
 };
+
+geiryn.View.prototype.onKeyDown = function ( ev ) {
+	if ( ev.key.match( /^[A-Za-z]$/ ) ) {
+		this.model.nextGuess.push( ev.key );
+		this.draw();
+	} else if ( ev.keyCode === 8 ) {
+		// Backspace
+		this.model.nextGuess.pop();
+		this.draw();
+	} else if ( ev.keyCode === 13 ) {
+		// Enter
+		var currentGuess = this.model.nextGuess.join( '' );
+		this.model.guess( currentGuess );
+		this.model.nextGuess.splice( 0 );
+		this.draw();
+	}
+};
+
 /**
  * Draw the curent model state
  *
@@ -14,7 +33,7 @@ geiryn.View = function ( model ) {
  */
 geiryn.View.prototype.draw = function () {
 	var game = document.getElementById( 'game' );
-
+	game.innerHTML = '';
 	// Create board
 	var board = document.createElement( 'div' );
 	board.classList.add( 'board' );
