@@ -8,6 +8,7 @@ geiryn.Model = function ( answer ) {
 	this.guesses = [];
 	this.keyStates = {};
 	this.answer = answer;
+	this.nextGuess = [];
 };
 
 /**

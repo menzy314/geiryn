@@ -21,7 +21,6 @@ geiryn.View.prototype.draw = function () {
 	for ( var i = 0; i < this.model.guesses.length; i++ ) {
 		this.createBoardRow( board, this.model.guesses[ i ] );
 	}
-
 	// Create keyboard
 	var keyboard = document.createElement( 'div' );
 	keyboard.classList.add( 'keyboard' );
@@ -29,6 +28,7 @@ geiryn.View.prototype.draw = function () {
 	this.createKeyboardRow( keyboard, 'qwertyuiop' );
 	this.createKeyboardRow( keyboard, 'asdfghjkl' );
 	this.createKeyboardRow( keyboard, 'zxcvbnm' );
+	this.createNextGuessRow( board, this.model.nextGuess );
 
 	// Attach to the top-level game div
 	game.appendChild( board );
@@ -48,9 +48,24 @@ geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
 geiryn.View.prototype.createBoardLetter = function ( row, letter, score ) {
 	var boardLetter = document.createElement( 'div' );
 	boardLetter.classList.add( 'board-letter' );
-	boardLetter.classList.add( 'board-letter-' + score );
+	if ( score !== undefined ) {
+		boardLetter.classList.add( 'board-letter-' + score );
+	}
 	row.appendChild( boardLetter );
 	boardLetter.innerText = letter;
+};
+
+geiryn.View.prototype.createNextGuessRow = function ( board, letters ) {
+	var nextGuessRow = document.createElement( 'div' );
+	nextGuessRow.classList.add( 'next-guess-row' );
+	board.appendChild( nextGuessRow );
+	for ( var i = 0; i < 5; i++ ) {
+		var item = letters[ i ];
+		if ( item === undefined ) {
+			item = '\u00A0';
+		}
+		this.createBoardLetter( nextGuessRow, item, undefined );
+	}
 };
 
 geiryn.View.prototype.createKeyboardRow = function ( keyboard, rowLetters ) {
