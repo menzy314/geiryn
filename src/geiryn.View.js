@@ -6,7 +6,20 @@
  */
 geiryn.View = function ( model ) {
 	this.model = model;
+
+	this.game = document.getElementById( 'game' );
+
+	this.board = document.createElement( 'div' );
+	this.board.classList.add( 'board' );
+
+	this.keyboard = document.createElement( 'div' );
+	this.keyboard.classList.add( 'keyboard' );
+
+	this.game.appendChild( this.board );
+	this.game.appendChild( this.keyboard );
+
 	window.addEventListener( 'keydown', this.onKeyDown.bind( this ) );
+	this.keyboard.addEventListener( 'click', this.onClick.bind( this ) );
 };
 
 geiryn.View.prototype.onKeyDown = function ( ev ) {
@@ -24,32 +37,31 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 	}
 };
 
+geiryn.View.prototype.onClick = function ( ev ) {
+	if ( ev.target.classList.contains( 'keyboard-key' ) ) {
+		var letter = ev.target.innerText;
+		this.model.pushLetter( letter );
+		this.draw();
+	}
+};
+
 /**
  * Draw the curent model state
  *
  * @method
  */
 geiryn.View.prototype.draw = function () {
-	var game = document.getElementById( 'game' );
-	game.innerHTML = '';
-	// Create board
-	var board = document.createElement( 'div' );
-	board.classList.add( 'board' );
+	this.board.innerHTML = '';
+	this.keyboard.innerHTML = '';
 	for ( var i = 0; i < this.model.guesses.length; i++ ) {
-		this.createBoardRow( board, this.model.guesses[ i ] );
+		this.createBoardRow( this.board, this.model.guesses[ i ] );
 	}
-	// Create keyboard
-	var keyboard = document.createElement( 'div' );
-	keyboard.classList.add( 'keyboard' );
 
-	this.createKeyboardRow( keyboard, 'qwertyuiop' );
-	this.createKeyboardRow( keyboard, 'asdfghjkl' );
-	this.createKeyboardRow( keyboard, 'zxcvbnm' );
-	this.createNextGuessRow( board, this.model.nextGuess );
+	this.createKeyboardRow( this.keyboard, 'qwertyuiop' );
+	this.createKeyboardRow( this.keyboard, 'asdfghjkl' );
+	this.createKeyboardRow( this.keyboard, 'zxcvbnm' );
+	this.createNextGuessRow( this.board, this.model.nextGuess );
 
-	// Attach to the top-level game div
-	game.appendChild( board );
-	game.appendChild( keyboard );
 };
 
 geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
