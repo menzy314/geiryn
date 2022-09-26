@@ -35,3 +35,15 @@ geiryn.Model.prototype.guess = function ( text ) {
 	}
 	return true;
 };
+
+geiryn.Model.prototype.pushLetter = function ( letter ) {
+	this.nextGuess.push( letter );
+};
+geiryn.Model.prototype.popLetter = function () {
+	this.nextGuess.pop();
+};
+geiryn.Model.prototype.submitGuess = function () {
+	var currentGuess = this.nextGuess.join( '' );
+	this.guess( currentGuess );
+	this.nextGuess.splice( 0 );
+};

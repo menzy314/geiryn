@@ -11,17 +11,15 @@ geiryn.View = function ( model ) {
 
 geiryn.View.prototype.onKeyDown = function ( ev ) {
 	if ( ev.key.match( /^[A-Za-z]$/ ) ) {
-		this.model.nextGuess.push( ev.key );
+		this.model.pushLetter( ev.key );
 		this.draw();
 	} else if ( ev.keyCode === 8 ) {
 		// Backspace
-		this.model.nextGuess.pop();
+		this.model.popLetter();
 		this.draw();
 	} else if ( ev.keyCode === 13 ) {
 		// Enter
-		var currentGuess = this.model.nextGuess.join( '' );
-		this.model.guess( currentGuess );
-		this.model.nextGuess.splice( 0 );
+		this.model.submitGuess();
 		this.draw();
 	}
 };
