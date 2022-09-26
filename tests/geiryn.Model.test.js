@@ -51,3 +51,28 @@ QUnit.test( 'guess', function ( assert ) {
 	);
 	assert.deepEqual( m.keyStates, { b: 0, r: 1, e: 2, a: 0, d: 0, l: 2, v: 0, g: 0, p: 0 }, 'letter states are updated' );
 } );
+
+QUnit.test( 'pushLetter', function ( assert ) {
+	var m = new geiryn.Model( 'leery' );
+	m.pushLetter( 'r' );
+	assert.deepEqual( m.nextGuess, [ 'r' ], 'typed r' );
+} );
+
+QUnit.test( 'popLetter', function ( assert ) {
+	var m = new geiryn.Model( 'leery' );
+	m.pushLetter( 'r' );
+	m.popLetter();
+	assert.deepEqual( m.nextGuess, [], 'backspaced' );
+} );
+
+QUnit.test( 'submitGuess', function ( assert ) {
+	var m = new geiryn.Model( 'leery' );
+	m.pushLetter( 'r' );
+	m.pushLetter( 'e' );
+	m.pushLetter( 'a' );
+	m.pushLetter( 'd' );
+	m.pushLetter( 'y' );
+	m.submitGuess();
+	assert.deepEqual( m.nextGuess, [], 'm.nextGuess has been emptied' );
+	assert.deepEqual( m.guesses.length, 1, 'guess has been added to m.guesses' );
+} );
