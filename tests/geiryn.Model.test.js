@@ -56,6 +56,12 @@ QUnit.test( 'pushLetter', function ( assert ) {
 	var m = new geiryn.Model( 'leery' );
 	m.pushLetter( 'r' );
 	assert.deepEqual( m.nextGuess, [ 'r' ], 'typed r' );
+	m.pushLetter( 'e' );
+	m.pushLetter( 'a' );
+	m.pushLetter( 'd' );
+	m.pushLetter( 'y' );
+	m.pushLetter( 's' );
+	assert.deepEqual( m.nextGuess, [ 'r', 'e', 'a', 'd', 'y' ], 'cannot type longer than 5 letters' );
 } );
 
 QUnit.test( 'popLetter', function ( assert ) {

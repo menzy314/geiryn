@@ -37,7 +37,9 @@ geiryn.Model.prototype.guess = function ( text ) {
 };
 
 geiryn.Model.prototype.pushLetter = function ( letter ) {
-	this.nextGuess.push( letter );
+	if ( this.nextGuess.length < 5 ) {
+		this.nextGuess.push( letter );
+	}
 };
 geiryn.Model.prototype.popLetter = function () {
 	this.nextGuess.pop();
