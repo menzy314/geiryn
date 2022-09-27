@@ -70,15 +70,18 @@ geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
 	board.appendChild( boardRow );
 	for ( var i = 0; i < rowData.length; i++ ) {
 		var item = rowData[ i ];
-		this.createBoardLetter( boardRow, item.letter, item.score );
+		this.createBoardLetter( boardRow, item.letter, item.score, false );
 	}
 };
 
-geiryn.View.prototype.createBoardLetter = function ( row, letter, score ) {
+geiryn.View.prototype.createBoardLetter = function ( row, letter, score, isNext ) {
 	var boardLetter = document.createElement( 'div' );
 	boardLetter.classList.add( 'board-letter' );
 	if ( score !== undefined ) {
 		boardLetter.classList.add( 'board-letter-' + score );
+	}
+	if ( isNext ) {
+		boardLetter.classList.add( 'board-letter-next' );
 	}
 	row.appendChild( boardLetter );
 	boardLetter.innerText = letter;
@@ -91,9 +94,11 @@ geiryn.View.prototype.createNextGuessRow = function ( board, letters ) {
 	for ( var i = 0; i < 5; i++ ) {
 		var item = letters[ i ];
 		if ( item === undefined ) {
+			// Set item to non-breaking space
 			item = '\u00A0';
 		}
-		this.createBoardLetter( nextGuessRow, item, undefined );
+		var isNext = ( i === letters.length );
+		this.createBoardLetter( nextGuessRow, item, undefined, isNext );
 	}
 };
 
