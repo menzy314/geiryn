@@ -59,7 +59,8 @@ geiryn.View.prototype.onClick = function ( ev ) {
 geiryn.View.prototype.draw = function () {
 	this.board.innerHTML = '';
 	this.keyboard.innerHTML = '';
-	for ( var i = 0; i < this.model.guesses.length; i++ ) {
+	var i;
+	for ( i = 0; i < this.model.guesses.length; i++ ) {
 		this.createBoardRow( this.board, this.model.guesses[ i ] );
 	}
 
@@ -67,7 +68,18 @@ geiryn.View.prototype.draw = function () {
 	this.createKeyboardRow( this.keyboard, 'asdfghjkl' );
 	this.createKeyboardRow( this.keyboard, '↵zxcvbnm⇦' );
 	this.createNextGuessRow( this.board, this.model.nextGuess );
+	for ( i = this.model.guesses.length + 1; i < 6; i++ ) {
+		this.createEmptyRow( this.board );
+	}
+};
 
+geiryn.View.prototype.createEmptyRow = function ( board ) {
+	var emptyRow = document.createElement( 'div' );
+	emptyRow.classList.add( 'empty-row' );
+	board.appendChild( emptyRow );
+	for ( var i = 0; i < 5; i++ ) {
+		this.createBoardLetter( emptyRow, undefined, undefined, false );
+	}
 };
 
 geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
@@ -89,6 +101,10 @@ geiryn.View.prototype.createBoardLetter = function ( row, letter, score, isNext 
 	if ( isNext ) {
 		boardLetter.classList.add( 'board-letter-next' );
 	}
+	if ( letter === undefined ) {
+		// Set letter to non-breaking space
+		letter = '\u00A0';
+	}
 	row.appendChild( boardLetter );
 	boardLetter.innerText = letter;
 };
@@ -98,13 +114,9 @@ geiryn.View.prototype.createNextGuessRow = function ( board, letters ) {
 	nextGuessRow.classList.add( 'next-guess-row' );
 	board.appendChild( nextGuessRow );
 	for ( var i = 0; i < 5; i++ ) {
-		var item = letters[ i ];
-		if ( item === undefined ) {
-			// Set item to non-breaking space
-			item = '\u00A0';
-		}
+		var letter = letters[ i ];
 		var isNext = ( i === letters.length );
-		this.createBoardLetter( nextGuessRow, item, undefined, isNext );
+		this.createBoardLetter( nextGuessRow, letter, undefined, isNext );
 	}
 };
 
