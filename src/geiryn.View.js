@@ -40,7 +40,13 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 geiryn.View.prototype.onClick = function ( ev ) {
 	if ( ev.target.classList.contains( 'keyboard-key' ) ) {
 		var letter = ev.target.innerText;
-		this.model.pushLetter( letter );
+		if ( letter === '⇦' ) {
+			this.model.popLetter();
+		} else if ( letter === '↵' ) {
+			this.model.submitGuess();
+		} else {
+			this.model.pushLetter( letter );
+		}
 		this.draw();
 	}
 };
@@ -59,7 +65,7 @@ geiryn.View.prototype.draw = function () {
 
 	this.createKeyboardRow( this.keyboard, 'qwertyuiop' );
 	this.createKeyboardRow( this.keyboard, 'asdfghjkl' );
-	this.createKeyboardRow( this.keyboard, 'zxcvbnm' );
+	this.createKeyboardRow( this.keyboard, '↵zxcvbnm⇦' );
 	this.createNextGuessRow( this.board, this.model.nextGuess );
 
 };
