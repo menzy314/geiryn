@@ -7,7 +7,8 @@
 geiryn.View = function ( model ) {
 	this.model = model;
 
-	this.game = document.getElementById( 'game' );
+	this.game = document.createElement( 'div' );
+	this.game.classList.add( 'geiryn-game' );
 
 	this.board = document.createElement( 'div' );
 	this.board.classList.add( 'board' );
