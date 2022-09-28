@@ -50,7 +50,8 @@ module.exports = function ( grunt ) {
 			}
 		}
 	} );
-	grunt.registerTask( 'lint', [ 'eslint', 'stylelint' ] );
+	//grunt.registerTask( 'lint', [ 'eslint', 'stylelint' ] );
+	grunt.registerTask( 'lint', [ 'eslint' ] );
 	grunt.registerTask( 'unit', [ 'karma:main' ] );
 	grunt.registerTask( 'test', [ 'lint', 'unit' ] );
 	grunt.registerTask( 'default', 'test' );
