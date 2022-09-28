@@ -138,6 +138,9 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 	if ( score !== undefined ) {
 		keyboardKey.classList.add( 'geiryn-keyboard-key-' + score );
 	}
+	if ( letter === '↵' || letter === '⇦' ) {
+		keyboardKey.classList.add( 'geiryn-keyboard-key-special' );
+	}
 	keyboardRow.appendChild( keyboardKey );
 	keyboardKey.innerText = letter;
 

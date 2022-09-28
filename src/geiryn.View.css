@@ -59,3 +59,6 @@ body {
 	background-color: green;
 	color: white;
 }
+.geiryn-keyboard-key-special {
+	width: 2.5em;
+}
