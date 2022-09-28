@@ -4,13 +4,13 @@ body {
 	font-family: sans-serif;
 	font-size: 300%;
 }
-.board {
+.geiryn-board {
 	text-transform: capitalize;
 }
-.board-row, .empty-row, .next-guess-row {
+.geiryn-board-row, .geiryn-empty-row, .geiryn-next-guess-row {
 	margin: 0.3em;
 }
-.board-letter {
+.geiryn-board-letter {
 	display: inline-block;
 	width: 2.5em;
 	height: 2.5em;
@@ -18,27 +18,27 @@ body {
 	border: solid gray 1px;
 	background-color: white;
 }
-.board-letter-next {
+.geiryn-board-letter-next {
 	border: solid black 3px;
 }
-.board-letter-0 {
+.geiryn-board-letter-0 {
 	background-color: darkgray;
 	color: white;
 }
-.board-letter-1 {
+.geiryn-board-letter-1 {
 	background-color: orange;
 	color: white;
 }
-.board-letter-2 {
+.geiryn-board-letter-2 {
 	background-color: green;
 	color: white;
 }
-.keyboard {
+.geiryn-keyboard {
 }
-.keyboard-row {
+.geiryn-keyboard-row {
 	margin: 0.3em;
 }
-.keyboard-key {
+.geiryn-keyboard-key {
 	display: inline-block;
 	width: 1.8em;
 	height: 3em;
@@ -47,15 +47,15 @@ body {
 	border-radius: 10px;
 	background-color: lightgray;
 }
-.keyboard-key-0 {
+.geiryn-keyboard-key-0 {
 	background-color: darkgray;
 	color: white;
 }
-.keyboard-key-1 {
+.geiryn-keyboard-key-1 {
 	background-color: orange;
 	color: white;
 }
-.keyboard-key-2 {
+.geiryn-keyboard-key-2 {
 	background-color: green;
 	color: white;
 }

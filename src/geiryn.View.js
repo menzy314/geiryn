@@ -11,10 +11,10 @@ geiryn.View = function ( model ) {
 	this.game.classList.add( 'geiryn-game' );
 
 	this.board = document.createElement( 'div' );
-	this.board.classList.add( 'board' );
+	this.board.classList.add( 'geiryn-board' );
 
 	this.keyboard = document.createElement( 'div' );
-	this.keyboard.classList.add( 'keyboard' );
+	this.keyboard.classList.add( 'geiryn-keyboard' );
 
 	this.game.appendChild( this.board );
 	this.game.appendChild( this.keyboard );
@@ -39,7 +39,7 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 };
 
 geiryn.View.prototype.onClick = function ( ev ) {
-	if ( ev.target.classList.contains( 'keyboard-key' ) ) {
+	if ( ev.target.classList.contains( 'geiryn-keyboard-key' ) ) {
 		var letter = ev.target.innerText;
 		if ( letter === '⇦' ) {
 			this.model.popLetter();
@@ -76,7 +76,7 @@ geiryn.View.prototype.draw = function () {
 
 geiryn.View.prototype.createEmptyRow = function ( board ) {
 	var emptyRow = document.createElement( 'div' );
-	emptyRow.classList.add( 'empty-row' );
+	emptyRow.classList.add( 'geiryn-empty-row' );
 	board.appendChild( emptyRow );
 	for ( var i = 0; i < 5; i++ ) {
 		this.createBoardLetter( emptyRow, undefined, undefined, false );
@@ -85,7 +85,7 @@ geiryn.View.prototype.createEmptyRow = function ( board ) {
 
 geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
 	var boardRow = document.createElement( 'div' );
-	boardRow.classList.add( 'board-row' );
+	boardRow.classList.add( 'geiryn-board-row' );
 	board.appendChild( boardRow );
 	for ( var i = 0; i < rowData.length; i++ ) {
 		var item = rowData[ i ];
@@ -95,12 +95,12 @@ geiryn.View.prototype.createBoardRow = function ( board, rowData ) {
 
 geiryn.View.prototype.createBoardLetter = function ( row, letter, score, isNext ) {
 	var boardLetter = document.createElement( 'div' );
-	boardLetter.classList.add( 'board-letter' );
+	boardLetter.classList.add( 'geiryn-board-letter' );
 	if ( score !== undefined ) {
-		boardLetter.classList.add( 'board-letter-' + score );
+		boardLetter.classList.add( 'geiryn-board-letter-' + score );
 	}
 	if ( isNext ) {
-		boardLetter.classList.add( 'board-letter-next' );
+		boardLetter.classList.add( 'geiryn-board-letter-next' );
 	}
 	if ( letter === undefined ) {
 		// Set letter to non-breaking space
@@ -112,7 +112,7 @@ geiryn.View.prototype.createBoardLetter = function ( row, letter, score, isNext 
 
 geiryn.View.prototype.createNextGuessRow = function ( board, letters ) {
 	var nextGuessRow = document.createElement( 'div' );
-	nextGuessRow.classList.add( 'next-guess-row' );
+	nextGuessRow.classList.add( 'geiryn-next-guess-row' );
 	board.appendChild( nextGuessRow );
 	for ( var i = 0; i < 5; i++ ) {
 		var letter = letters[ i ];
@@ -123,7 +123,7 @@ geiryn.View.prototype.createNextGuessRow = function ( board, letters ) {
 
 geiryn.View.prototype.createKeyboardRow = function ( keyboard, rowLetters ) {
 	var keyboardRow = document.createElement( 'div' );
-	keyboardRow.classList.add( 'keyboard-row' );
+	keyboardRow.classList.add( 'geiryn-keyboard-row' );
 	keyboard.appendChild( keyboardRow );
 	for ( var i = 0; i < rowLetters.length; i++ ) {
 		var letter = rowLetters[ i ];
@@ -134,9 +134,9 @@ geiryn.View.prototype.createKeyboardRow = function ( keyboard, rowLetters ) {
 geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 	var keyboardKey = document.createElement( 'div' );
 	var score = this.model.keyStates[ letter ];
-	keyboardKey.classList.add( 'keyboard-key' );
+	keyboardKey.classList.add( 'geiryn-keyboard-key' );
 	if ( score !== undefined ) {
-		keyboardKey.classList.add( 'keyboard-key-' + score );
+		keyboardKey.classList.add( 'geiryn-keyboard-key-' + score );
 	}
 	keyboardRow.appendChild( keyboardKey );
 	keyboardKey.innerText = letter;
