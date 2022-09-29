@@ -1,9 +1,20 @@
-geiryn.demo = function () {
-	var randomIndex = Math.floor( Math.random() * geiryn.wordlist.length );
-	var randomWord = geiryn.wordlist[ randomIndex ];
-	var m = new geiryn.Model( randomWord );
+/* global cyrb53 */
+
+geiryn.fetchDailyText = function () {
+	return fetch( 'http://www.floatrates.com/daily/gbp.json', { mode: 'cors' } ).then( function ( request ) {
+		return request.text();
+	} );
+};
+
+geiryn.demo = function ( seed ) {
+	var word = geiryn.wordlist[ seed % geiryn.wordlist.length ];
+	var m = new geiryn.Model( word );
 	var v = new geiryn.View( m );
 	v.draw();
 	document.getElementById( 'game' ).appendChild( v.game );
 };
-geiryn.demo();
+
+geiryn.fetchDailyText().then( function ( dailyText ) {
+	var dailySeed = cyrb53( dailyText );
+	geiryn.demo( dailySeed );
+} );
