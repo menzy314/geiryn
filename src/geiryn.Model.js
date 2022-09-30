@@ -49,3 +49,25 @@ geiryn.Model.prototype.submitGuess = function () {
 	this.guess( currentGuess );
 	this.nextGuess.splice( 0 );
 };
+
+geiryn.Model.prototype.getScoreEmojis = function () {
+	var emojis = '';
+	for ( var i = 0; i < this.guesses.length; i++ ) {
+		var guess = this.guesses[ i ];
+		for ( var j = 0; j < guess.length; j++ ) {
+			var letter = guess[ j ];
+			var emoji;
+			if ( letter.score === 0 ) {
+				emoji = '⬜';
+			} else if ( letter.score === 1 ) {
+				emoji = '🟨';
+			} else {
+				emoji = '🟩';
+			}
+			// console.log( emoji );
+			emojis += emoji;
+		}
+		emojis += '\n';
+	}
+	return emojis;
+};
