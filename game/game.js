@@ -8,10 +8,10 @@ geiryn.fetchDailyText = function () {
 
 geiryn.demo = function ( seed ) {
 	var word = geiryn.wordlist[ seed % geiryn.wordlist.length ];
-	var m = new geiryn.Model( word );
-	var v = new geiryn.View( m );
-	v.draw();
-	document.getElementById( 'game' ).appendChild( v.game );
+	geiryn.m = new geiryn.Model( word );
+	geiryn.v = new geiryn.View( geiryn.m );
+	geiryn.v.draw();
+	document.getElementById( 'game' ).appendChild( geiryn.v.game );
 };
 
 geiryn.fetchDailyText().then( function ( dailyText ) {
