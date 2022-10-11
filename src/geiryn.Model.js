@@ -2,7 +2,7 @@
  * Game logic
  *
  * @constructor
- * @param {string} answer The answer
+ * @param {string[]} answer The answer
  */
 geiryn.Model = function ( answer ) {
 	this.guesses = [];
@@ -15,7 +15,7 @@ geiryn.Model = function ( answer ) {
  * Process user's guess.
  *
  * @method
- * @param {string} text The guess
+ * @param {string[]} text The guess
  * @return {boolean} Is text a word
  */
 geiryn.Model.prototype.guess = function ( text ) {
@@ -45,7 +45,7 @@ geiryn.Model.prototype.popLetter = function () {
 	this.nextGuess.pop();
 };
 geiryn.Model.prototype.submitGuess = function () {
-	var currentGuess = this.nextGuess.join( '' );
+	var currentGuess = this.nextGuess.slice();
 	this.guess( currentGuess );
 	this.nextGuess.splice( 0 );
 };

@@ -1,13 +1,16 @@
 geiryn = {};
 
 /**
- * Check whether some text is in the word list
+ * Check whether some text is in the long wordlist
  *
- * @param {string} text The text to check
- * @return {boolean} Whether the text is in the word list
+ * @param {string[]} text The text to check
+ * @return {boolean} Whether the text is in the long wordlist
  */
 geiryn.isWord = function ( text ) {
-	if ( geiryn.wordlist.indexOf( text ) !== -1 ) {
+	// text is like [ 'b', 'a', 'ch', 'a', 'u' ]
+	// but geiryn.cyLongList is like [ ..., 'b a ch a u', ... ]
+	var spacedText = text.join( ' ' );
+	if ( geiryn.cyLonglist.indexOf( spacedText ) !== -1 ) {
 		return true;
 	} else {
 		return false;
@@ -24,13 +27,13 @@ geiryn.isWord = function ( text ) {
  *
  * XXX explain exactly how 1 works in the case of doubled letters
  *
- * @param {string} word The word to find; must be five letters
- * @param {string} guess The guess; must be five letters
+ * @param {string[]} word The word to find; must be five letters
+ * @param {string[]} guess The guess; must be five letters
  * @return {object[]} array like [ { letter: 'x', score: 1 }, ... ]
  */
 geiryn.evaluate = function ( word, guess ) {
-	var wordArray = word.split( '' );
-	var guessArray = guess.split( '' );
+	var wordArray = word.slice();
+	var guessArray = guess.slice();
 	var scores = [ null, null, null, null, null ];
 	// Find exact matches, and set matching letters to null
 	var i;

@@ -7,7 +7,8 @@ geiryn.fetchDailyText = function () {
 };
 
 geiryn.demo = function ( seed ) {
-	var word = geiryn.wordlist[ seed % geiryn.wordlist.length ];
+	var spacedWord = geiryn.cyShortlist[ seed % geiryn.cyShortlist.length ];
+	var word = spacedWord.split( ' ' );
 	geiryn.m = new geiryn.Model( word );
 	geiryn.v = new geiryn.View( geiryn.m );
 	geiryn.v.draw();

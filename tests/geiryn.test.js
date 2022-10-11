@@ -19,10 +19,10 @@ geiryn.buildLetterScores = function ( guess, numberArray ) {
 };
 
 QUnit.test( 'isWord', function ( assert ) {
-	var result = geiryn.isWord( 'abcde' );
-	assert.deepEqual( result, false, 'abcde is not a word' );
-	var result2 = geiryn.isWord( 'drums' );
-	assert.deepEqual( result2, true, 'drums is a word' );
+	var result1 = geiryn.isWord( [ 'a', 'b', 'c', 'd', 'e' ] );
+	assert.deepEqual( result1, false, 'abcde is not a word' );
+	var result2 = geiryn.isWord( [ 'l', 'w', 'c', 'u', 's' ] );
+	assert.deepEqual( result2, true, 'lwcus is a word' );
 } );
 
 QUnit.test( 'evaluate', function ( assert ) {
@@ -31,18 +31,20 @@ QUnit.test( 'evaluate', function ( assert ) {
 		var expectArray = geiryn.buildLetterScores( guess, numberArray );
 		assert.deepEqual( result, expectArray, 'guess "' + guess + '" for answer "' + answer + '"' );
 	}
-
-	check( 'trade', 'ddeee', [ 1, 0, 0, 0, 2 ] );
-	check( 'force', 'force', [ 2, 2, 2, 2, 2 ] );
-	check( 'silly', 'doggo', [ 0, 0, 0, 0, 0 ] );
-	check( 'heart', 'hxxxx', [ 2, 0, 0, 0, 0 ] );
-	check( 'leery', 'ready', [ 1, 2, 0, 0, 2 ] );
-	check( 'leery', 'gleet', [ 0, 1, 2, 1, 0 ] );
-	check( 'leery', 'jerry', [ 0, 2, 0, 2, 2 ] );
-	check( 'leery', 'rover', [ 1, 0, 0, 1, 0 ] );
-	check( 'leery', 'geese', [ 0, 2, 2, 0, 0 ] );
-	check( 'leery', 'levee', [ 2, 2, 0, 1, 0 ] );
-	check( 'flare', 'drove', [ 0, 1, 0, 0, 2 ] );
-	check( 'flare', 'rarer', [ 1, 1, 0, 1, 0 ] );
-	check( 'flare', 'reams', [ 1, 1, 2, 0, 0 ] );
+	check( [ 't', 'r', 'a', 'd', 'e' ], [ 'd', 'd', 'e', 'e', 'e' ], [ 1, 0, 0, 0, 2 ] );
+	check( [ 'f', 'o', 'r', 'c', 'e' ], [ 'f', 'o', 'r', 'c', 'e' ], [ 2, 2, 2, 2, 2 ] );
+	check( [ 's', 'i', 'l', 'l', 'y' ], [ 'd', 'o', 'g', 'g', 'o' ], [ 0, 0, 0, 0, 0 ] );
+	check( [ 'h', 'e', 'a', 'r', 't' ], [ 'h', 'x', 'x', 'x', 'x' ], [ 2, 0, 0, 0, 0 ] );
+	check( [ 'l', 'e', 'e', 'r', 'y' ], [ 'r', 'e', 'a', 'd', 'y' ], [ 1, 2, 0, 0, 2 ] );
+	check( [ 'l', 'e', 'e', 'r', 'y' ], [ 'g', 'l', 'e', 'e', 't' ], [ 0, 1, 2, 1, 0 ] );
+	check( [ 'l', 'e', 'e', 'r', 'y' ], [ 'j', 'e', 'r', 'r', 'y' ], [ 0, 2, 0, 2, 2 ] );
+	check( [ 'l', 'e', 'e', 'r', 'y' ], [ 'r', 'o', 'v', 'e', 'r' ], [ 1, 0, 0, 1, 0 ] );
+	check( [ 'l', 'e', 'e', 'r', 'y' ], [ 'g', 'e', 'e', 's', 'e' ], [ 0, 2, 2, 0, 0 ] );
+	check( [ 'l', 'e', 'e', 'r', 'y' ], [ 'l', 'e', 'v', 'e', 'e' ], [ 2, 2, 0, 1, 0 ] );
+	check( [ 'f', 'l', 'a', 'r', 'e' ], [ 'd', 'r', 'o', 'v', 'e' ], [ 0, 1, 0, 0, 2 ] );
+	check( [ 'f', 'l', 'a', 'r', 'e' ], [ 'r', 'a', 'r', 'e', 'r' ], [ 1, 1, 0, 1, 0 ] );
+	check( [ 'f', 'l', 'a', 'r', 'e' ], [ 'r', 'e', 'a', 'm', 's' ], [ 1, 1, 2, 0, 0 ] );
+	check( [ 'rh', 'a', 'ff', 'o', 'dd' ], [ 'a', 'r', 'f', 'd', 'y' ], [ 1, 0, 0, 0, 0 ] );
+	check( [ 'a', 'r', 'f', 'd', 'y' ], [ 'rh', 'a', 'ff', 'o', 'dd' ], [ 0, 1, 0, 0, 0 ] );
+	check( [ 'a', 'n', 'g', 'a', 'ng' ], [ 'a', 'ng', 'a', 'n', 'g' ], [ 2, 1, 1, 1, 1 ] );
 } );

@@ -3,7 +3,8 @@
 		"scripts": [
 			"src/geiryn.js",
 			"src/geiryn.Model.js",
-			"src/geiryn.wordlist.js"
+			"src/geiryn.cyLonglist.js",
+			"src/geiryn.cyShortlist.js"
 		]
 	},
 	"geiryn.test": {
