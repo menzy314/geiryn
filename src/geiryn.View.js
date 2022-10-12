@@ -64,10 +64,9 @@ geiryn.View.prototype.draw = function () {
 	for ( i = 0; i < this.model.guesses.length; i++ ) {
 		this.createBoardRow( this.board, this.model.guesses[ i ] );
 	}
-
-	this.createKeyboardRow( this.keyboard, 'qwertyuiop' );
-	this.createKeyboardRow( this.keyboard, 'asdfghjkl' );
-	this.createKeyboardRow( this.keyboard, '↵zxcvbnm⇦' );
+	this.createKeyboardRow( this.keyboard, [ 'w', 'e', 'r', 'rh', 't', 'th', 'y', 'u', 'i', 'o', 'p' ] );
+	this.createKeyboardRow( this.keyboard, [ 'a', 's', 'd', 'dd', 'f', 'ff', 'g', 'h', 'j', 'l', 'll' ] );
+	this.createKeyboardRow( this.keyboard, [ '↵', 'c', 'ch', 'b', 'n', 'ng', 'm', '⇦' ] );
 	this.createNextGuessRow( this.board, this.model.nextGuess );
 	for ( i = this.model.guesses.length + 1; i < 6; i++ ) {
 		this.createEmptyRow( this.board );
