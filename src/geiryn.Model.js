@@ -15,6 +15,7 @@ geiryn.Model = function ( answer ) {
 	this.keyStates = {};
 	this.answer = answer;
 	this.nextGuess = [];
+	this.maybeDigraph = false;
 };
 
 /**
@@ -45,17 +46,31 @@ geiryn.Model.prototype.guess = function ( text ) {
 };
 
 geiryn.Model.prototype.pushLetter = function ( letter ) {
+	if ( this.maybeDigraph === true ) {
+		this.maybeDigraph = false;
+		var digraph = this.nextGuess[ this.nextGuess.length - 1 ] + letter;
+		if ( digraph.match( /^(ch|dd|ff|ng|ll|rh|th)$/ ) ) {
+			this.nextGuess.pop();
+			this.nextGuess.push( digraph );
+			return;
+		}
+	}
 	if ( this.nextGuess.length < 5 ) {
 		this.nextGuess.push( letter );
+		if ( letter.match( /^[cdfnlrt]$/ ) ) {
+			this.maybeDigraph = true;
+		}
 	}
 };
 geiryn.Model.prototype.popLetter = function () {
 	this.nextGuess.pop();
+	this.maybeDigraph = false;
 };
 geiryn.Model.prototype.submitGuess = function () {
 	var currentGuess = this.nextGuess.slice();
 	this.guess( currentGuess );
 	this.nextGuess.splice( 0 );
+	this.maybeDigraph = false;
 };
 
 geiryn.Model.prototype.getScoreEmojis = function () {

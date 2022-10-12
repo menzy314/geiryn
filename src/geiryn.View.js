@@ -24,6 +24,9 @@ geiryn.View = function ( model ) {
 };
 
 geiryn.View.prototype.onKeyDown = function ( ev ) {
+	if ( !ev.shiftKey && !ev.ctrlKey && !ev.metaKey ) {
+		ev.preventDefault();
+	}
 	if ( ev.key.match( /^[A-Za-z]$/ ) ) {
 		this.model.pushLetter( ev.key );
 		this.draw();
@@ -34,6 +37,10 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 	} else if ( ev.keyCode === 13 ) {
 		// Enter
 		this.model.submitGuess();
+		this.draw();
+	} else if ( ev.keyCode === 32 ) {
+		// Space
+		this.model.maybeDigraph = false;
 		this.draw();
 	}
 };
@@ -115,7 +122,12 @@ geiryn.View.prototype.createNextGuessRow = function ( board, letters ) {
 	board.appendChild( nextGuessRow );
 	for ( var i = 0; i < 5; i++ ) {
 		var letter = letters[ i ];
-		var isNext = ( i === letters.length );
+		var isNext;
+		if ( !this.model.maybeDigraph ) {
+			isNext = ( i === letters.length );
+		} else {
+			isNext = ( i === letters.length - 1 );
+		}
 		this.createBoardLetter( nextGuessRow, letter, undefined, isNext );
 	}
 };
