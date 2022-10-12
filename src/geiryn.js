@@ -1,19 +1,72 @@
 geiryn = {};
 
 /**
- * Check whether some text is in the long wordlist
+ * Find the word corresponding to the deaccented text, if any
  *
- * @param {string[]} text The text to check
- * @return {boolean} Whether the text is in the long wordlist
+ * @param {string[]} deAccentedText The deaccented text to check
+ * @return {string[]|null} The word (with any accents), or null if not found
  */
-geiryn.isWord = function ( text ) {
-	// text is like [ 'b', 'a', 'ch', 'a', 'u' ]
-	// but geiryn.cyLongList is like [ ..., 'b a ch a u', ... ]
-	var spacedText = text.join( ' ' );
-	if ( geiryn.cyLonglist.indexOf( spacedText ) !== -1 ) {
-		return true;
+geiryn.findWord = function ( deAccentedText ) {
+	geiryn.buildCyLonglistDeAccented();
+	// deAccentedText is like [ 'c', 'o', 'ff', 'a', 'd' ]
+	// geiryn.cyLonglistDeAccented is like [ ..., 'c o ff a d', ... ]
+	// geiryn.cyLonglist is like [ ..., 'c o ff â d', ... ]
+
+	var spacedText = deAccentedText.join( ' ' ); // e.e. 'c o ff a d'
+	var index = geiryn.cyLonglistDeAccented.indexOf( spacedText );
+	if ( index === -1 ) {
+		return null;
 	} else {
-		return false;
+		var accentedWord = geiryn.cyLonglist[ index ].split( ' ' );
+		return accentedWord;
+	}
+};
+
+geiryn.deAccentString = function ( text ) {
+	var deAccentedArray = [];
+	for ( var i = 0; i < text.length; i++ ) {
+		var character = text[ i ];
+		var deAccentedCharacter = geiryn.deAccentCharacter( character );
+		deAccentedArray.push( deAccentedCharacter );
+	}
+	return deAccentedArray.join( '' );
+};
+
+geiryn.deAccentCharacter = function ( ch ) {
+	if ( ch === 'â' || ch === 'ä' || ch === 'á' || ch === 'à' ) {
+		return 'a';
+	}
+	if ( ch === 'ê' || ch === 'ë' || ch === 'é' || ch === 'è' ) {
+		return 'e';
+	}
+	if ( ch === 'î' || ch === 'ï' || ch === 'í' || ch === 'ì' ) {
+		return 'i';
+	}
+	if ( ch === 'ô' || ch === 'ö' || ch === 'ó' || ch === 'ó' ) {
+		return 'o';
+	}
+	if ( ch === 'û' || ch === 'ü' || ch === 'ú' || ch === 'ù' ) {
+		return 'u';
+	}
+	if ( ch === 'ŵ' || ch === 'ẅ' || ch === 'ẃ' || ch === 'ẁ' ) {
+		return 'w';
+	}
+	if ( ch === 'ŷ' || ch === 'ÿ' || ch === 'ý' || ch === 'ỳ' ) {
+		return 'y';
+	}
+	return ch;
+};
+
+geiryn.cyLonglistDeAccented = undefined;
+geiryn.buildCyLonglistDeAccented = function () {
+	if ( geiryn.cyLonglistDeAccented !== undefined ) {
+		return;
+	}
+	geiryn.cyLonglistDeAccented = [];
+	for ( var i = 0; i < geiryn.cyLonglist.length; i++ ) {
+		var word = geiryn.cyLonglist[ i ];
+		var deAccentedWord = geiryn.deAccentString( word );
+		geiryn.cyLonglistDeAccented.push( deAccentedWord );
 	}
 };
 
@@ -27,35 +80,38 @@ geiryn.isWord = function ( text ) {
  *
  * XXX explain exactly how 1 works in the case of doubled letters
  *
- * @param {string[]} word The word to find; must be five letters
- * @param {string[]} guess The guess; must be five letters
+ * @param {string[]} accentedAnswer The answer to find; must be five letters
+ * @param {string[]} accentedGuess The guess; must be five letters
  * @return {object[]} array like [ { letter: 'x', score: 1 }, ... ]
  */
-geiryn.evaluate = function ( word, guess ) {
-	var wordArray = word.slice();
-	var guessArray = guess.slice();
+geiryn.evaluate = function ( accentedAnswer, accentedGuess ) {
+	var deAccentedAnswer = geiryn.deAccentString( accentedAnswer.join( ' ' ) ).split( ' ' );
+	var deAccentedGuess = geiryn.deAccentString( accentedGuess.join( ' ' ) ).split( ' ' );
 	var scores = [ null, null, null, null, null ];
+
 	// Find exact matches, and set matching letters to null
 	var i;
-	for ( i = 0; i < wordArray.length; i++ ) {
-		if ( wordArray[ i ] === guessArray[ i ] ) {
-			scores[ i ] = { letter: wordArray[ i ], score: 2 };
-			wordArray[ i ] = null;
-			guessArray[ i ] = null;
+	for ( i = 0; i < deAccentedAnswer.length; i++ ) {
+		if ( deAccentedAnswer[ i ] === deAccentedGuess[ i ] ) {
+			scores[ i ] = { letter: accentedGuess[ i ], score: 2 };
+			deAccentedAnswer[ i ] = null;
+			deAccentedGuess[ i ] = null;
 		}
 	}
-	// Test each letter in guessArray for partial match
-	for ( i = 0; i < guessArray.length; i++ ) {
-		var letter = guessArray[ i ];
-		if ( letter === null ) {
+
+	// Test each letter in deAccentedGuess for partial match
+	for ( i = 0; i < deAccentedGuess.length; i++ ) {
+		var deAccentedLetter = deAccentedGuess[ i ];
+		var accentedLetter = accentedGuess[ i ];
+		if ( deAccentedLetter === null ) {
 			continue;
 		}
-		var letterIndex = wordArray.indexOf( letter );
+		var letterIndex = deAccentedAnswer.indexOf( deAccentedLetter );
 		if ( letterIndex !== -1 ) {
-			scores[ i ] = { letter: letter, score: 1 };
-			wordArray[ letterIndex ] = null;
+			scores[ i ] = { letter: accentedLetter, score: 1 };
+			deAccentedAnswer[ letterIndex ] = null;
 		} else {
-			scores[ i ] = { letter: letter, score: 0 };
+			scores[ i ] = { letter: accentedLetter, score: 0 };
 		}
 	}
 	return scores;

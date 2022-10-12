@@ -18,11 +18,18 @@ geiryn.buildLetterScores = function ( guess, numberArray ) {
 	return letterScores;
 };
 
-QUnit.test( 'isWord', function ( assert ) {
-	var result1 = geiryn.isWord( [ 'a', 'b', 'c', 'd', 'e' ] );
-	assert.deepEqual( result1, false, 'abcde is not a word' );
-	var result2 = geiryn.isWord( [ 'l', 'w', 'c', 'u', 's' ] );
-	assert.deepEqual( result2, true, 'lwcus is a word' );
+QUnit.test( 'findWord', function ( assert ) {
+	var result1 = geiryn.findWord( [ 'a', 'b', 'c', 'd', 'e' ] );
+	assert.deepEqual( result1, null, 'abcde is not a word' );
+	var result2 = geiryn.findWord( [ 'l', 'w', 'c', 'u', 's' ] );
+	assert.deepEqual( result2, [ 'l', 'w', 'c', 'u', 's' ], 'lwcus is a word' );
+	var result3 = geiryn.findWord( [ 't', 'a', 't', 'w', 'o' ] );
+	assert.deepEqual( result3, [ 't', 'a', 't', 'ŵ', 'o' ], 'tatŵo is a word' );
+} );
+
+QUnit.test( 'deAccentString', function ( assert ) {
+	var result = geiryn.deAccentString( 'âlëíafbnmŷŵ' );
+	assert.deepEqual( result, 'aleiafbnmyw' );
 } );
 
 QUnit.test( 'evaluate', function ( assert ) {

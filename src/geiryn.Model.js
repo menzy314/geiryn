@@ -1,6 +1,12 @@
 /**
  * Game logic
  *
+ * User enters an unaccented guess. The guess is accepted if it matches a
+ * word in geiryn.cyLonglist, ignoring accents. Matched word gets put into
+ * the guess list, i.e. including accents if any. The guess gets compared
+ * to the answer, ignoring accents. Keystates are updated accordingly,
+ * ignoring accents.
+ *
  * @constructor
  * @param {string[]} answer The answer
  */
@@ -15,22 +21,24 @@ geiryn.Model = function ( answer ) {
  * Process user's guess.
  *
  * @method
- * @param {string[]} text The guess
- * @return {boolean} Is text a word
+ * @param {string[]} text The guess (i.e. without accented letters)
+ * @return {boolean} Does text match a word?
  */
 geiryn.Model.prototype.guess = function ( text ) {
-	if ( geiryn.isWord( text ) === false ) {
+	var foundWord = geiryn.findWord( text );
+	if ( foundWord === null ) {
 		return false;
 	}
-	var scoredLetters = geiryn.evaluate( this.answer, text );
+	var scoredLetters = geiryn.evaluate( this.answer, foundWord );
 	this.guesses.push( scoredLetters );
 	for ( var i = 0; i < 5; i++ ) {
 		var scoredLetter = scoredLetters[ i ];
 		// Mae scoredLetter yn edrych fel hyn:
 		// { letter: 'q', score: 2 }
-		var pastScore = this.keyStates[ scoredLetter.letter ];
+		var deAccentedLetter = geiryn.deAccentCharacter( scoredLetter.letter );
+		var pastScore = this.keyStates[ deAccentedLetter ];
 		if ( pastScore === undefined || scoredLetter.score > pastScore ) {
-			this.keyStates[ scoredLetter.letter ] = scoredLetter.score;
+			this.keyStates[ deAccentedLetter ] = scoredLetter.score;
 		}
 	}
 	return true;
