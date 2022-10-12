@@ -5,7 +5,7 @@ body {
 	font-size: 300%;
 }
 .geiryn-board {
-	text-transform: capitalize;
+	text-transform: uppercase;
 }
 .geiryn-board-row, .geiryn-empty-row, .geiryn-next-guess-row {
 	margin: 0.3em;
