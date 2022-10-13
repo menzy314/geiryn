@@ -46,9 +46,10 @@ geiryn.Model.prototype.guess = function ( text ) {
 };
 
 geiryn.Model.prototype.pushLetter = function ( letter ) {
+	var lowerLetter = letter.toLowerCase();
 	if ( this.maybeDigraph === true ) {
 		this.maybeDigraph = false;
-		var digraph = this.nextGuess[ this.nextGuess.length - 1 ] + letter;
+		var digraph = this.nextGuess[ this.nextGuess.length - 1 ] + lowerLetter;
 		if ( digraph.match( /^(ch|dd|ff|ng|ll|rh|th)$/ ) ) {
 			this.nextGuess.pop();
 			this.nextGuess.push( digraph );
@@ -56,8 +57,8 @@ geiryn.Model.prototype.pushLetter = function ( letter ) {
 		}
 	}
 	if ( this.nextGuess.length < 5 ) {
-		this.nextGuess.push( letter );
-		if ( letter.match( /^[cdfnlrt]$/ ) ) {
+		this.nextGuess.push( lowerLetter );
+		if ( lowerLetter.match( /^[cdfnlrt]$/ ) ) {
 			this.maybeDigraph = true;
 		}
 	}
