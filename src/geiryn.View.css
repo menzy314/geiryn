@@ -1,52 +1,60 @@
+@media screen and (orientation: portrait) and (max-width: 991px) {
+	body {
+		font-size: 200%;
+	}
+}
 body {
 	touch-action: manipulation;
 	text-align: center;
 	font-family: sans-serif;
-	font-size: 300%;
 }
 .geiryn-board {
 	text-transform: uppercase;
 }
 .geiryn-board-row, .geiryn-empty-row, .geiryn-next-guess-row {
-	margin: 0.3em;
 }
 .geiryn-board-letter {
+	margin: 0.15em;
 	display: inline-block;
-	width: 2.5em;
-	height: 2.5em;
-	line-height: 2.5em;
-	border: solid gray 1px;
+	width: 3em;
+	height: 3em;
+	line-height: 3em;
+	border: solid lightgray 3px;
 	background-color: white;
+	font-size: 130%;
 }
 .geiryn-board-letter-next {
-	border: solid black 3px;
+	border-color: black;
 	text-decoration: underline;
 }
 .geiryn-board-letter-0 {
 	background-color: darkgray;
 	color: white;
+	border-color: darkgray;
 }
 .geiryn-board-letter-1 {
 	background-color: orange;
 	color: white;
+	border-color: orange;
 }
 .geiryn-board-letter-2 {
 	background-color: green;
 	color: white;
+	border-color: green;
 }
 .geiryn-keyboard {
 	text-transform: uppercase;
+	margin-top: 1em;
 }
 .geiryn-keyboard-row {
-	margin: 0.3em;
 }
 .geiryn-keyboard-key {
+	margin: 0.15em;
 	display: inline-block;
-	width: 1.8em;
-	height: 3em;
-	line-height: 3em;
-	border: solid gray 1px;
-	border-radius: 10px;
+	width: 2.25em;
+	height: 4em;
+	line-height: 4em;
+	border-radius: 2px;
 	background-color: lightgray;
 }
 .geiryn-keyboard-key-0 {
@@ -62,5 +70,5 @@ body {
 	color: white;
 }
 .geiryn-keyboard-key-special {
-	width: 2.5em;
+	width: 3em;
 }
