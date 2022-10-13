@@ -24,24 +24,26 @@ geiryn.View = function ( model ) {
 };
 
 geiryn.View.prototype.onKeyDown = function ( ev ) {
-	if ( !ev.shiftKey && !ev.ctrlKey && !ev.metaKey ) {
-		ev.preventDefault();
-	}
-	if ( ev.key.match( /^[A-Za-z]$/ ) ) {
+	var noMods = !ev.shiftKey && !ev.ctrlKey && !ev.metaKey;
+	if ( noMods && ev.key.match( /^[A-Za-z]$/ ) ) {
 		this.model.pushLetter( ev.key );
 		this.draw();
-	} else if ( ev.keyCode === 8 ) {
+		ev.preventDefault();
+	} else if ( noMods && ev.keyCode === 8 ) {
 		// Backspace
 		this.model.popLetter();
 		this.draw();
-	} else if ( ev.keyCode === 13 ) {
+		ev.preventDefault();
+	} else if ( noMods && ev.keyCode === 13 ) {
 		// Enter
 		this.model.submitGuess();
 		this.draw();
-	} else if ( ev.keyCode === 32 ) {
+		ev.preventDefault();
+	} else if ( noMods && ev.keyCode === 32 ) {
 		// Space
 		this.model.maybeDigraph = false;
 		this.draw();
+		ev.preventDefault();
 	}
 };
 
