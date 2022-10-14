@@ -16,6 +16,7 @@ geiryn.Model = function ( answer ) {
 	this.answer = answer;
 	this.nextGuess = [];
 	this.maybeDigraph = false;
+	this.hasWon = false;
 };
 
 /**
@@ -23,17 +24,20 @@ geiryn.Model = function ( answer ) {
  *
  * @method
  * @param {string[]} text The guess (i.e. without accented letters)
- * @return {boolean} Does text match a word?
  */
 geiryn.Model.prototype.guess = function ( text ) {
 	var foundWord = geiryn.findWord( text );
 	if ( foundWord === null ) {
-		return false;
+		return;
 	}
 	var scoredLetters = geiryn.evaluate( this.answer, foundWord );
 	this.guesses.push( scoredLetters );
+	var correctLetters = 0;
 	for ( var i = 0; i < 5; i++ ) {
 		var scoredLetter = scoredLetters[ i ];
+		if ( scoredLetter.score === 2 ) {
+			correctLetters += 1;
+		}
 		// Mae scoredLetter yn edrych fel hyn:
 		// { letter: 'q', score: 2 }
 		var deAccentedLetter = geiryn.deAccentCharacter( scoredLetter.letter );
@@ -42,9 +46,19 @@ geiryn.Model.prototype.guess = function ( text ) {
 			this.keyStates[ deAccentedLetter ] = scoredLetter.score;
 		}
 	}
-	return true;
+
+	if ( correctLetters === 5 ) {
+		this.hasWon = true;
+	}
 };
 
+/**
+ * Append letter to nextGuess
+ *
+ * Automatically joins digraphs
+ *
+ * @param {string} letter The letter to append
+ */
 geiryn.Model.prototype.pushLetter = function ( letter ) {
 	var lowerLetter = letter.toLowerCase();
 	if ( this.maybeDigraph === true ) {
@@ -63,15 +77,22 @@ geiryn.Model.prototype.pushLetter = function ( letter ) {
 		}
 	}
 };
+
+/**
+ * Remove last letter from nextGuess
+ */
 geiryn.Model.prototype.popLetter = function () {
 	this.nextGuess.pop();
 	this.maybeDigraph = false;
 };
+/**
+ * Submit nextGuess
+ */
 geiryn.Model.prototype.submitGuess = function () {
 	var currentGuess = this.nextGuess.slice();
-	this.guess( currentGuess );
 	this.nextGuess.splice( 0 );
 	this.maybeDigraph = false;
+	this.guess( currentGuess );
 };
 
 geiryn.Model.prototype.getScoreEmojis = function () {

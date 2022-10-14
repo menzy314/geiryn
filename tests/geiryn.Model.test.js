@@ -17,18 +17,15 @@ QUnit.test( 'constructor', function ( assert ) {
 
 QUnit.test( 'guess', function ( assert ) {
 	var m = new geiryn.Model( [ 'b', 'a', 'ch', 'a', 'u' ] );
-	var result1 = m.guess( [ 'i', 'i', 'i', 'l', 'i' ] );
-	assert.deepEqual( result1, false, 'non-word is rejected' );
-	var result2 = m.guess( [ 'a', 'ch', 'w', 'y', 'n' ] );
-	assert.deepEqual( result2, true, 'word is accepted' );
+	m.guess( [ 'i', 'i', 'i', 'l', 'i' ] );
+	m.guess( [ 'a', 'ch', 'w', 'y', 'n' ] );
 	assert.deepEqual(
 		m.guesses,
 		[ geiryn.buildLetterScores( [ 'a', 'ch', 'w', 'y', 'n' ], [ 1, 1, 0, 0, 0 ] ) ],
 		'only the real word is stored as a guess'
 	);
 	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0 }, 'letter states are updated' );
-	var result3 = m.guess( [ 'b', 'r', 'e', 'ch', 'u' ] );
-	assert.deepEqual( result3, true, 'word is accepted' );
+	m.guess( [ 'b', 'r', 'e', 'ch', 'u' ] );
 	assert.deepEqual(
 		m.guesses,
 		[
@@ -38,8 +35,7 @@ QUnit.test( 'guess', function ( assert ) {
 		'only the real words are stored as a guess'
 	);
 	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0, b: 2, r: 0, e: 0, u: 2 }, 'letter states are updated' );
-	var result4 = m.guess( [ 'g', 'r', 'a', 'w', 'n' ] );
-	assert.deepEqual( result4, true, 'word is accepted' );
+	m.guess( [ 'g', 'r', 'a', 'w', 'n' ] );
 	assert.deepEqual(
 		m.guesses,
 		[

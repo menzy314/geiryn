@@ -25,6 +25,9 @@ geiryn.View = function ( model ) {
 
 geiryn.View.prototype.onKeyDown = function ( ev ) {
 	var noMods = !ev.shiftKey && !ev.ctrlKey && !ev.metaKey;
+	if ( this.model.hasWon ) {
+		return;
+	}
 	if ( noMods && ev.key.match( /^[A-Za-z]$/ ) ) {
 		this.model.pushLetter( ev.key );
 		this.draw();
@@ -36,7 +39,7 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 		ev.preventDefault();
 	} else if ( noMods && ev.keyCode === 13 ) {
 		// Enter
-		this.model.submitGuess();
+		this.submitGuess();
 		this.draw();
 		ev.preventDefault();
 	} else if ( noMods && ev.keyCode === 32 ) {
@@ -50,10 +53,13 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 geiryn.View.prototype.onClick = function ( ev ) {
 	if ( ev.target.classList.contains( 'geiryn-keyboard-key' ) ) {
 		var letter = ev.target.innerText;
+		if ( this.model.hasWon ) {
+			return;
+		}
 		if ( letter === '⇦' ) {
 			this.model.popLetter();
 		} else if ( letter === '↵' ) {
-			this.model.submitGuess();
+			this.submitGuess();
 		} else {
 			this.model.pushLetter( letter );
 		}
@@ -76,9 +82,15 @@ geiryn.View.prototype.draw = function () {
 	this.createKeyboardRow( this.keyboard, [ 'w', 'e', 'r', 'rh', 't', 'th', 'y', 'u', 'i', 'o', 'p' ] );
 	this.createKeyboardRow( this.keyboard, [ 'a', 's', 'd', 'dd', 'f', 'ff', 'g', 'h', 'j', 'l', 'll' ] );
 	this.createKeyboardRow( this.keyboard, [ '↵', 'c', 'ch', 'b', 'n', 'ng', 'm', '⇦' ] );
-	this.createNextGuessRow( this.board, this.model.nextGuess );
-	for ( i = this.model.guesses.length + 1; i < 6; i++ ) {
-		this.createEmptyRow( this.board );
+	if ( this.model.hasWon ) {
+		for ( i = this.model.guesses.length; i < 6; i++ ) {
+			this.createEmptyRow( this.board );
+		}
+	} else {
+		this.createNextGuessRow( this.board, this.model.nextGuess );
+		for ( i = this.model.guesses.length + 1; i < 6; i++ ) {
+			this.createEmptyRow( this.board );
+		}
 	}
 };
 
@@ -157,4 +169,19 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 	keyboardRow.appendChild( keyboardKey );
 	keyboardKey.innerText = letter;
 
+};
+
+/**
+ * Submit the guess
+ *
+ * Congratulate if correct
+ */
+geiryn.View.prototype.submitGuess = function () {
+	this.model.submitGuess();
+	if ( this.model.hasWon ) {
+		setTimeout( function () {
+			// eslint-disable-next-line no-alert
+			alert( 'youve won' );
+		} );
+	}
 };
