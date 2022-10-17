@@ -58,7 +58,7 @@ body {
 	background-color: lightgray;
 }
 .geiryn-keyboard-key-0 {
-	background-color: darkgray;
+	background-color: gray;
 	color: white;
 }
 .geiryn-keyboard-key-1 {
@@ -71,4 +71,30 @@ body {
 }
 .geiryn-keyboard-key-special {
 	width: 3em;
+}
+
+.geiryn-dialog {
+	position: fixed;
+	top: 25%;
+	bottom: 25%;
+	left: 25%;
+	right: 25%;
+	width: 50%;
+	height: 50%;
+	font-size: 250%;
+	background-color: white;
+	box-shadow: 0 0 0.5em gray;
+	border-radius: 0.5em;
+}
+.geiryn-dialog-header {
+	text-align: right;
+}
+.geiryn-dialog-header-closeButton {
+	min-height: 2em;
+	min-width: 2em;
+	border: none;
+	background-color: transparent;
+	font-size: 100%;
+	vertical-align: top;
+	cursor: pointer;
 }

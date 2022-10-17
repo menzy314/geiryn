@@ -178,10 +178,36 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
  */
 geiryn.View.prototype.submitGuess = function () {
 	this.model.submitGuess();
+	var emojis = this.model.getScoreEmojis();
 	if ( this.model.hasWon ) {
-		setTimeout( function () {
-			// eslint-disable-next-line no-alert
-			alert( 'youve won' );
-		} );
+		this.alert( 'Sgôr:\n' + emojis );
 	}
+};
+
+geiryn.View.prototype.alert = function ( message ) {
+	var dialog = document.createElement( 'div' );
+	dialog.classList.add( 'geiryn-dialog' );
+	var header = document.createElement( 'div' );
+	header.classList.add( 'geiryn-dialog-header' );
+	var contents = document.createElement( 'div' );
+	contents.classList.add( 'geiryn-dialog-contents' );
+	contents.innerText = message;
+	var closeButton = document.createElement( 'button' );
+	closeButton.innerText = '×';
+	closeButton.classList.add( 'geiryn-dialog-header-closeButton' );
+	closeButton.addEventListener( 'click', function () {
+		document.body.removeChild( dialog );
+	} );
+	document.body.addEventListener( 'keydown', function ( ev ) {
+		if ( ev.keyCode === 27 ) {
+			// escape
+			if ( dialog.parentNode ) {
+				dialog.parentNode.removeChild( dialog );
+			}
+		}
+	} );
+	dialog.appendChild( header );
+	header.appendChild( closeButton );
+	dialog.appendChild( contents );
+	document.body.appendChild( dialog );
 };
