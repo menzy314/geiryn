@@ -16,8 +16,8 @@ body {
 .geiryn-board-letter {
 	margin: 0.15em;
 	display: inline-block;
-	width: 3em;
-	height: 3em;
+	width: 3.5em;
+	height: 3.5em;
 	line-height: 3em;
 	border: solid lightgray 3px;
 	background-color: white;
@@ -45,16 +45,21 @@ body {
 .geiryn-keyboard {
 	text-transform: uppercase;
 	margin-top: 1em;
+	position: fixed;
+	bottom: 0.5em;
+	width: 100%;
 }
 .geiryn-keyboard-row {
+	margin: 0.30em;
 }
 .geiryn-keyboard-key {
-	margin: 0.15em;
+	font-weight: bold;
+	margin: 0.2em;
 	display: inline-block;
 	width: 2.25em;
-	height: 4em;
+	height: 4.5em;
 	line-height: 4em;
-	border-radius: 2px;
+	border-radius: 10px;
 	background-color: lightgray;
 }
 .geiryn-keyboard-key-0 {
@@ -70,7 +75,7 @@ body {
 	color: white;
 }
 .geiryn-keyboard-key-special {
-	width: 3em;
+	width: 3.3em;
 }
 
 .geiryn-dialog {
