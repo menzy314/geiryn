@@ -92,6 +92,10 @@ geiryn.View.prototype.draw = function () {
 			this.createEmptyRow( this.board );
 		}
 	}
+	window.scrollTo( {
+		top: document.body.scrollHeight,
+		behavior: 'smooth'
+	} );
 };
 
 geiryn.View.prototype.createEmptyRow = function ( board ) {
@@ -178,8 +182,8 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
  */
 geiryn.View.prototype.submitGuess = function () {
 	this.model.submitGuess();
-	var emojis = this.model.getScoreEmojis();
 	if ( this.model.hasWon ) {
+		var emojis = this.model.getScoreEmojis();
 		this.alert( 'Sgôr:\n' + emojis );
 	}
 };
