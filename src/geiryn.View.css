@@ -78,6 +78,7 @@ body {
 
 .geiryn-dialog {
 	position: fixed;
+	overflow-y: scroll;
 	top: 10%;
 	bottom: 10%;
 	left: 10%;
@@ -91,7 +92,12 @@ body {
 }
 
 .geiryn-dialog-header {
-	text-align: right;
+	position: sticky;
+	top: 0;
+	height: 2em;
+	line-height: 2em;
+	background-color: white;
+	padding-left: 2em;
 }
 .geiryn-dialog-header-closeButton {
 	min-height: 2em;
@@ -99,6 +105,7 @@ body {
 	border: none;
 	background-color: transparent;
 	font-size: 100%;
+	float: right;
 	vertical-align: top;
 	cursor: pointer;
 }

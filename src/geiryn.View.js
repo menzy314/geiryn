@@ -184,15 +184,16 @@ geiryn.View.prototype.submitGuess = function () {
 	this.model.submitGuess();
 	if ( this.model.hasWon ) {
 		var emojis = this.model.getScoreEmojis();
-		this.alert( 'Sgôr:\n' + emojis );
+		this.alert( 'Sgôr', emojis );
 	}
 };
 
-geiryn.View.prototype.alert = function ( message ) {
+geiryn.View.prototype.alert = function ( title, message ) {
 	var dialog = document.createElement( 'div' );
 	dialog.classList.add( 'geiryn-dialog' );
 	var header = document.createElement( 'div' );
 	header.classList.add( 'geiryn-dialog-header' );
+	header.innerText = title;
 	var contents = document.createElement( 'div' );
 	contents.classList.add( 'geiryn-dialog-contents' );
 	contents.innerText = message;
