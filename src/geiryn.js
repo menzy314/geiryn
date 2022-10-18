@@ -116,3 +116,28 @@ geiryn.evaluate = function ( accentedAnswer, accentedGuess ) {
 	}
 	return scores;
 };
+
+/**
+ * Copy text to clipboard
+ *
+ * @param {string} text The text to copy
+ * @return {boolean} Whether the copy succeeded
+ */
+geiryn.copyToClipboard = function ( text ) {
+	var copyTextArea = document.getElementById( 'geiryn-copy-textarea' );
+	if ( !copyTextArea ) {
+		copyTextArea = document.createElement( 'textarea' );
+		document.body.appendChild( copyTextArea );
+	}
+	copyTextArea.value = text;
+	copyTextArea.focus();
+	copyTextArea.select();
+	try {
+		var successful = document.execCommand( 'copy' );
+		return successful;
+	} catch ( err ) {
+		// eslint-disable-next-line no-console
+		console.error( 'Copy failed', err );
+		return false;
+	}
+};

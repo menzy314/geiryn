@@ -183,20 +183,20 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 geiryn.View.prototype.submitGuess = function () {
 	this.model.submitGuess();
 	if ( this.model.hasWon ) {
-		var emojis = this.model.getScoreEmojis();
-		this.alert( 'Sgôr', emojis );
+		this.congratulate();
 	}
 };
 
-geiryn.View.prototype.alert = function ( title, message ) {
+geiryn.View.prototype.congratulate = function () {
 	var dialog = document.createElement( 'div' );
 	dialog.classList.add( 'geiryn-dialog' );
 	var header = document.createElement( 'div' );
 	header.classList.add( 'geiryn-dialog-header' );
-	header.innerText = title;
+	header.innerText = 'Sgôr';
 	var contents = document.createElement( 'div' );
 	contents.classList.add( 'geiryn-dialog-contents' );
-	contents.innerText = message;
+	var emojis = this.model.getScoreEmojis();
+	contents.innerText = emojis;
 	var closeButton = document.createElement( 'button' );
 	closeButton.innerText = '×';
 	closeButton.classList.add( 'geiryn-dialog-header-closeButton' );
@@ -211,8 +211,19 @@ geiryn.View.prototype.alert = function ( title, message ) {
 			}
 		}
 	} );
+	var shareButton = document.createElement( 'button' );
+	shareButton.innerText = 'Rhannu fy sgôr';
+	shareButton.classList.add( 'geiryn-dialog-contents-shareButton' );
+	shareButton.addEventListener( 'click', function () {
+		geiryn.copyToClipboard(
+			'Sgôr fi:\n' +
+			emojis + '\n' +
+			'http://geiryn.com\n'
+		);
+	} );
 	dialog.appendChild( header );
 	header.appendChild( closeButton );
 	dialog.appendChild( contents );
+	contents.appendChild( shareButton );
 	document.body.appendChild( dialog );
 };

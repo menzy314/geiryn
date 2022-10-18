@@ -109,7 +109,6 @@ geiryn.Model.prototype.getScoreEmojis = function () {
 			} else {
 				emoji = '🟩';
 			}
-			// console.log( emoji );
 			emojis += emoji;
 		}
 		emojis += '\n';
