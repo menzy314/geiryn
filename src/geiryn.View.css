@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400&display=swap');
 body {
 	touch-action: manipulation;
 	text-align: center;
-	font-family: sans-serif;
+	font-family: 'Radio Canada', sans-serif;
 }
 
 .geiryn-board {
@@ -11,14 +12,16 @@ body {
 .geiryn-board-row, .geiryn-empty-row, .geiryn-next-guess-row {
 }
 .geiryn-board-letter {
-	margin: 0.15em;
+	font-weight: bold;
+	margin: 0.15rem;
 	display: inline-block;
-	width: 3.5em;
-	height: 3.5em;
-	line-height: 3em;
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
 	border: solid lightgray 3px;
 	background-color: white;
-	font-size: 130%;
+	font-size: 1.75rem;
+	vertical-align: center;
 }
 .geiryn-board-letter-next {
 	border-color: black;
@@ -42,8 +45,9 @@ body {
 .geiryn-keyboard {
 	text-transform: uppercase;
 	padding-top: 1em;
+	padding-bottom: 0.5em;
 	position: fixed;
-	bottom: 0.5em;
+	bottom: 0;
 	width: 100%;
 	background-color: white;
 }
@@ -110,7 +114,19 @@ body {
 	cursor: pointer;
 }
 
-
+.geiryn-dialog-contents-shareButton {
+	min-height: 2.5em;
+	min-width: 9em;
+	font-size: 50%;
+	margin-top: 2em;
+	border-color: lightgray;
+	background-color: whitesmoke;
+	color: black;
+	cursor: pointer;
+}
+.geiryn-dialog-contents-shareButton:hover {
+	background-color: white;
+}
 @media screen and (orientation: portrait) and (max-width: 991px) {
 	body {
 		font-size: 200%;
@@ -122,5 +138,12 @@ body {
 		right: 0%;
 		top: 0%;
 		bottom: 0%;
+	}
+	.geiryn-board-letter {
+		margin: 0.5rem;
+		width: 9rem;
+		height: 9rem;
+		line-height: 9rem;
+		font-size: 5rem;
 	}
 }

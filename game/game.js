@@ -11,8 +11,8 @@ geiryn.demo = function ( seed ) {
 	var word = spacedWord.split( ' ' );
 	geiryn.m = new geiryn.Model( word );
 	geiryn.v = new geiryn.View( geiryn.m );
-	geiryn.v.draw();
 	document.getElementById( 'game' ).appendChild( geiryn.v.game );
+	geiryn.v.draw();
 };
 
 geiryn.fetchDailyText().then( function ( dailyText ) {
