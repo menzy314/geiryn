@@ -181,12 +181,16 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
  * Congratulate if correct
  */
 geiryn.View.prototype.submitGuess = function () {
+	var view = this;
 	this.model.submitGuess();
 	if ( this.model.hasWon ) {
-		this.congratulate();
+		setTimeout( function () {
+			view.congratulate();
+		}, 1000 );
 	}
 };
 
+// TODO: fade-in effect
 geiryn.View.prototype.congratulate = function () {
 	var dialog = document.createElement( 'div' );
 	dialog.classList.add( 'geiryn-dialog' );
