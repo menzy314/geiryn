@@ -138,6 +138,7 @@ body {
 }
 @media screen and (orientation: portrait) and (max-width: 991px) {
 	body {
+		overscroll-behavior-y: contain;
 		font-size: 200%;
 	}
 	.geiryn-dialog {
