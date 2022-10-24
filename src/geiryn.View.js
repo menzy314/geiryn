@@ -196,11 +196,9 @@ geiryn.View.prototype.greet = function () {
 	contents.innerHTML = (
 		'<p>Dyfala air Cymraeg pump llythyren, er enghraifft:</p>\n' +
 		'<img class="geiryn-image" src="../theatr.png">\n' +
-		'<ul>\n' +
-		'<li>Mae’r <strong>R</strong> werdd yn golygu bod yr ateb yn cynnwys <strong>R</strong> yn yr un safle.</li>\n' +
-		'<li>Mae’r <strong>A</strong> a <strong>T</strong> oren yn golygu bod yr ateb yn cynnwys <strong>A</strong> a <strong>T</strong>, ond ddim yn yr un safle.</li>\n' +
-		'<li>Mae’r <strong>TH</strong> a <strong>E</strong> llwyd yn golygu nad yw’r ateb yn cynnwys <strong>TH</strong> neu <strong>E</strong> o gwbl.</li>\n' +
-		'</ul>\n' +
+		'<p>Mae’r <strong>R</strong> werdd yn golygu bod yr ateb yn cynnwys <strong>R</strong> yn yr un safle.</p>\n' +
+		'<p>Mae’r <strong>A</strong> a <strong>T</strong> oren yn golygu bod yr ateb yn cynnwys <strong>A</strong> a <strong>T</strong>, ond ddim yn yr un safle.</p>\n' +
+		'<p>Mae’r <strong>TH</strong> a <strong>E</strong> llwyd yn golygu nad yw’r ateb yn cynnwys <strong>TH</strong> neu <strong>E</strong> o gwbl.</p>\n' +
 		'<p>Caria ymlaen yn dyfalu geiriau, er enghraifft:<p>\n' +
 		'<img class="geiryn-image" src="../actor.png">\n' +
 		'<p>Nawr mae <strong>T</strong> a <strong>R</strong> yn y lle cywir, ac mae <strong>A</strong> yn y lle anghywir.\n' +
@@ -217,10 +215,9 @@ geiryn.View.prototype.congratulate = function () {
 	contents.classList.add( 'geiryn-messageBox-congratulate-contents' );
 
 	var emojis = this.model.getScoreEmojis();
-	contents.innerText = emojis;
-
+	contents.innerHTML = emojis.replace( /\n/g, '<br>' ) + '<p>Gweler y <a href="https://github.com/menzy314/geiryn" target="_blank">cod ar GitHub</a></p>';
 	var shareButton = document.createElement( 'button' );
-	shareButton.innerText = 'Rhannu fy sgôr';
+	shareButton.innerText = 'Rhannu';
 	shareButton.classList.add( 'geiryn-dialog-contents-shareButton' );
 	shareButton.addEventListener( 'click', function () {
 		geiryn.copyToClipboard(
