@@ -190,17 +190,37 @@ geiryn.View.prototype.submitGuess = function () {
 	}
 };
 
-// TODO: fade-in effect
 geiryn.View.prototype.congratulate = function () {
+	var contents = document.createElement( 'div' );
+	contents.classList.add( 'geiryn-dialog-contents' );
+
+	var emojis = this.model.getScoreEmojis();
+	contents.innerText = emojis;
+
+	var shareButton = document.createElement( 'button' );
+	shareButton.innerText = 'Rhannu fy sgôr';
+	shareButton.classList.add( 'geiryn-dialog-contents-shareButton' );
+	shareButton.addEventListener( 'click', function () {
+		geiryn.copyToClipboard(
+			'Sgôr fi:\n' +
+			emojis + '\n' +
+			'http://geiryn.com\n'
+		);
+	} );
+
+	contents.appendChild( shareButton );
+
+	var messageBox = geiryn.createMessageBox( 'Sgôr', contents );
+	document.body.appendChild( messageBox );
+};
+
+// TODO: fade-in effect
+geiryn.createMessageBox = function ( headerText, contents ) {
 	var dialog = document.createElement( 'div' );
 	dialog.classList.add( 'geiryn-dialog' );
 	var header = document.createElement( 'div' );
 	header.classList.add( 'geiryn-dialog-header' );
-	header.innerText = 'Sgôr';
-	var contents = document.createElement( 'div' );
-	contents.classList.add( 'geiryn-dialog-contents' );
-	var emojis = this.model.getScoreEmojis();
-	contents.innerText = emojis;
+	header.innerText = headerText;
 	var closeButton = document.createElement( 'button' );
 	closeButton.innerText = '×';
 	closeButton.classList.add( 'geiryn-dialog-header-closeButton' );
@@ -215,19 +235,8 @@ geiryn.View.prototype.congratulate = function () {
 			}
 		}
 	} );
-	var shareButton = document.createElement( 'button' );
-	shareButton.innerText = 'Rhannu fy sgôr';
-	shareButton.classList.add( 'geiryn-dialog-contents-shareButton' );
-	shareButton.addEventListener( 'click', function () {
-		geiryn.copyToClipboard(
-			'Sgôr fi:\n' +
-			emojis + '\n' +
-			'http://geiryn.com\n'
-		);
-	} );
 	dialog.appendChild( header );
 	header.appendChild( closeButton );
 	dialog.appendChild( contents );
-	contents.appendChild( shareButton );
-	document.body.appendChild( dialog );
+	return dialog;
 };
