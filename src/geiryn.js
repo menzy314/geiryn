@@ -134,10 +134,12 @@ geiryn.copyToClipboard = function ( text ) {
 	copyTextArea.select();
 	try {
 		var successful = document.execCommand( 'copy' );
+		document.body.removeChild( copyTextArea );
 		return successful;
 	} catch ( err ) {
 		// eslint-disable-next-line no-console
 		console.error( 'Copy failed', err );
+		document.body.removeChild( copyTextArea );
 		return false;
 	}
 };
