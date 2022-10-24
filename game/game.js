@@ -13,6 +13,7 @@ geiryn.demo = function ( seed ) {
 	geiryn.v = new geiryn.View( geiryn.m );
 	document.getElementById( 'game' ).appendChild( geiryn.v.game );
 	geiryn.v.draw();
+	geiryn.v.greet();
 };
 
 geiryn.fetchDailyText().then( function ( dailyText ) {

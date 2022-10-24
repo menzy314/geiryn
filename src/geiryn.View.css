@@ -89,7 +89,6 @@ body {
 	right: 10%;
 	width: 80%;
 	height: 80%;
-	font-size: 250%;
 	background-color: white;
 	box-shadow: 0 0 0.5em gray;
 	border-radius: 0.5em;
@@ -100,6 +99,7 @@ body {
 	top: 0;
 	height: 2em;
 	line-height: 2em;
+	font-size: 250%;
 	background-color: white;
 	padding-left: 2em;
 }
@@ -112,6 +112,15 @@ body {
 	float: right;
 	vertical-align: top;
 	cursor: pointer;
+}
+
+.geiryn-messageBox-greet-contents {
+	text-align: left;
+	margin: 0 1em;
+}
+
+.geiryn-messageBox-congratulate-contents {
+	font-size: 250%;
 }
 
 .geiryn-dialog-contents-shareButton {
@@ -145,5 +154,8 @@ body {
 		height: 9rem;
 		line-height: 9rem;
 		font-size: 5rem;
+	}
+	.geiryn-image {
+		width: 80%;
 	}
 }
