@@ -92,6 +92,8 @@ body {
 	background-color: white;
 	box-shadow: 0 0 0.5em gray;
 	border-radius: 0.5em;
+	opacity: 0;
+	transition: opacity 0.25s;
 }
 
 .geiryn-dialog-header {

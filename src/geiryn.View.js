@@ -185,8 +185,10 @@ geiryn.View.prototype.submitGuess = function () {
 	this.model.submitGuess();
 	if ( this.model.hasWon ) {
 		setTimeout( function () {
-			view.congratulate();
-		}, 1000 );
+			requestAnimationFrame( function () {
+				view.congratulate();
+			} );
+		}, 500 );
 	}
 };
 
@@ -208,6 +210,9 @@ geiryn.View.prototype.greet = function () {
 	);
 	var messageBox = geiryn.createMessageBox( 'Sut i chwarae', contents );
 	document.body.appendChild( messageBox );
+	setTimeout( function () {
+		messageBox.style.opacity = '1';
+	} );
 };
 
 geiryn.View.prototype.congratulate = function () {
@@ -228,12 +233,14 @@ geiryn.View.prototype.congratulate = function () {
 	} );
 
 	contents.appendChild( shareButton );
-
 	var messageBox = geiryn.createMessageBox( 'Sgôr', contents );
 	document.body.appendChild( messageBox );
+	setTimeout( function () {
+		messageBox.style.opacity = '1';
+	} );
+
 };
 
-// TODO: fade-in effect
 geiryn.createMessageBox = function ( headerText, contents ) {
 	var dialog = document.createElement( 'div' );
 	dialog.classList.add( 'geiryn-dialog' );
