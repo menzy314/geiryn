@@ -81,7 +81,7 @@ geiryn.View.prototype.draw = function () {
 	}
 	this.createKeyboardRow( this.keyboard, [ 'w', 'e', 'r', 'rh', 't', 'th', 'y', 'u', 'i', 'o', 'p' ] );
 	this.createKeyboardRow( this.keyboard, [ 'a', 's', 'd', 'dd', 'f', 'ff', 'g', 'h', 'j', 'l', 'll' ] );
-	this.createKeyboardRow( this.keyboard, [ '↵', 'c', 'ch', 'b', 'n', 'ng', 'm', '⇦' ] );
+	this.createKeyboardRow( this.keyboard, [ 'Enter', 'c', 'ch', 'b', 'n', 'ng', 'm', 'Backspace' ] );
 	if ( this.model.hasWon ) {
 		for ( i = this.model.guesses.length; i < 6; i++ ) {
 			this.createEmptyRow( this.board );
@@ -167,12 +167,18 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 	if ( score !== undefined ) {
 		keyboardKey.classList.add( 'geiryn-keyboard-key-' + score );
 	}
-	if ( letter === '↵' || letter === '⇦' ) {
+	if ( letter === 'Enter' || letter === 'Backspace' ) {
 		keyboardKey.classList.add( 'geiryn-keyboard-key-special' );
 	}
+	if ( letter === 'Backspace' ) {
+		keyboardKey.innerHTML = '<img class="geiryn-keyboard-image" src="../res/backspace.png" alt="Del">';
+	} else if ( letter === 'Enter' ) {
+		keyboardKey.innerHTML = '<img class="geiryn-keyboard-image" src="../res/enter.png" alt="Enter">';
+		keyboardKey.classList.add( 'geiryn-keyboard-key-2' );
+	} else {
+		keyboardKey.innerText = letter;
+	}
 	keyboardRow.appendChild( keyboardKey );
-	keyboardKey.innerText = letter;
-
 };
 
 /**
@@ -219,19 +225,21 @@ geiryn.View.prototype.congratulate = function () {
 	var contents = document.createElement( 'div' );
 	contents.classList.add( 'geiryn-messageBox-congratulate-contents' );
 
-	var emojis = document.createElement( 'p' );
-	emojis.classList.add( 'geiryn-messageBox-congratulate-emojis' );
-	emojis.innerText = this.model.getScoreEmojis();
-	contents.appendChild( emojis );
+	var emojis = this.model.getScoreEmojis();
+	var emojisDiv = document.createElement( 'p' );
+	emojisDiv.classList.add( 'geiryn-messageBox-congratulate-emojis' );
+	emojisDiv.innerText = emojis;
+	contents.appendChild( emojisDiv );
 
 	var shareButton = document.createElement( 'button' );
-	shareButton.innerText = 'Rhannu';
+	shareButton.innerHTML = '<img class="geiryn-share-image" src="../res/share.png" alt="">Rhannu';
 	shareButton.classList.add( 'geiryn-dialog-contents-shareButton' );
-	shareButton.addEventListener( 'click', function () {
+	shareButton.addEventListener( 'click', function ( ev ) {
+		ev.preventDefault();
 		geiryn.copyToClipboard(
 			'Sgôr fi:\n' +
 			emojis + '\n' +
-			'http://geiryn.com\n'
+			'geiryn.com'
 		);
 	} );
 

@@ -77,7 +77,12 @@ body {
 	color: white;
 }
 .geiryn-keyboard-key-special {
-	width: 3.3em;
+	width: 4em;
+}
+.geiryn-keyboard-image {
+	width: 2em;
+	height: auto;
+	vertical-align: middle;
 }
 
 .geiryn-dialog {
@@ -137,15 +142,23 @@ body {
 	min-width: 9em;
 	font-size: 130%;
 	margin-top: 2em;
+	padding-right: 0.5em;
 	border: none;
-	background-color: #6a6;
+	background-color: #72aa44;
 	color: white;
 	border-radius: 1em;
 	cursor: pointer;
+	line-height: 1.5em;
 }
 
 .geiryn-dialog-contents-shareButton:hover {
 	border: solid #080 2px;
+}
+.geiryn-share-image {
+	height: 1.5em;
+	width: auto;
+	vertical-align: middle;
+	margin-right: 0.2em;
 }
 
 .geiryn-messageBox-congratulate-acknowledgements {
