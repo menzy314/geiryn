@@ -72,11 +72,11 @@ body {
 	background-color: orange;
 	color: white;
 }
-.geiryn-keyboard-key-2 {
+.geiryn-keyboard-key-2, .geiryn-keyboard-key-enter {
 	background-color: green;
 	color: white;
 }
-.geiryn-keyboard-key-special {
+.geiryn-keyboard-key-enter, .geiryn-keyboard-key-backspace {
 	width: 4em;
 }
 .geiryn-keyboard-image {

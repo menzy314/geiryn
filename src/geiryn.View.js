@@ -55,20 +55,20 @@ geiryn.View.prototype.onKeyDown = function ( ev ) {
 };
 
 geiryn.View.prototype.onClick = function ( ev ) {
-	if ( ev.target.classList.contains( 'geiryn-keyboard-key' ) ) {
-		var letter = ev.target.innerText;
-		if ( this.model.hasWon ) {
-			return;
-		}
-		if ( letter === '⇦' ) {
-			this.model.popLetter();
-		} else if ( letter === '↵' ) {
-			this.submitGuess();
-		} else {
-			this.model.pushLetter( letter );
-		}
-		this.draw();
+	var keyDiv = ev.target.closest( '.geiryn-keyboard-key' );
+	if ( this.model.hasWon || !keyDiv ) {
+		return;
 	}
+	if ( keyDiv.classList.contains( 'geiryn-keyboard-key-enter' ) ) {
+		this.submitGuess();
+	} else if ( keyDiv.classList.contains( 'geiryn-keyboard-key-backspace' ) ) {
+		this.model.popLetter();
+	} else {
+		// gwnaethon nhw bwyso llythyren
+		var letter = keyDiv.innerText;
+		this.model.pushLetter( letter );
+	}
+	this.draw();
 };
 
 /**
@@ -171,14 +171,12 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 	if ( score !== undefined ) {
 		keyboardKey.classList.add( 'geiryn-keyboard-key-' + score );
 	}
-	if ( letter === 'Enter' || letter === 'Backspace' ) {
-		keyboardKey.classList.add( 'geiryn-keyboard-key-special' );
-	}
 	if ( letter === 'Backspace' ) {
 		keyboardKey.innerHTML = '<img class="geiryn-keyboard-image" src="../res/backspace.png" alt="Del">';
+		keyboardKey.classList.add( 'geiryn-keyboard-key-backspace' );
 	} else if ( letter === 'Enter' ) {
 		keyboardKey.innerHTML = '<img class="geiryn-keyboard-image" src="../res/enter.png" alt="Enter">';
-		keyboardKey.classList.add( 'geiryn-keyboard-key-2' );
+		keyboardKey.classList.add( 'geiryn-keyboard-key-enter' );
 	} else {
 		keyboardKey.innerText = letter;
 	}
