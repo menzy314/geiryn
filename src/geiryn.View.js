@@ -219,8 +219,11 @@ geiryn.View.prototype.congratulate = function () {
 	var contents = document.createElement( 'div' );
 	contents.classList.add( 'geiryn-messageBox-congratulate-contents' );
 
-	var emojis = this.model.getScoreEmojis();
-	contents.innerHTML = emojis.replace( /\n/g, '<br>' ) + '<p>Gweler y <a href="https://github.com/menzy314/geiryn" target="_blank">cod ar GitHub</a></p>';
+	var emojis = document.createElement( 'p' );
+	emojis.classList.add( 'geiryn-messageBox-congratulate-emojis' );
+	emojis.innerText = this.model.getScoreEmojis();
+	contents.appendChild( emojis );
+
 	var shareButton = document.createElement( 'button' );
 	shareButton.innerText = 'Rhannu';
 	shareButton.classList.add( 'geiryn-dialog-contents-shareButton' );
@@ -232,19 +235,23 @@ geiryn.View.prototype.congratulate = function () {
 		);
 	} );
 
+	var acknowledgments = document.createElement( 'div' );
+	acknowledgments.classList.add( 'geiryn-messageBox-congratulate-acknowledgements' );
+	acknowledgments.innerHTML = '<h2>Diolchiadau</h2><p>Uned Technolegau Iaith, Prifysgol Bangor, am ddarparu <a href="https://github.com/techiaith/lecsicon-cymraeg-bangor" target="_blank">Lecsicon Cymraeg Bangor</a>. Mae Geiryn yn cynnwys data o’r lecsicon.</p><p>Gweler y <a href="https://github.com/menzy314/geiryn" target="_blank">cod ar GitHub</a>.</p>';
+
 	contents.appendChild( shareButton );
 	var messageBox = geiryn.createMessageBox( 'Sgôr', contents );
 	document.body.appendChild( messageBox );
 	setTimeout( function () {
 		messageBox.style.opacity = '1';
 	} );
-
+	contents.appendChild( acknowledgments );
 };
 
 geiryn.createMessageBox = function ( headerText, contents ) {
 	var dialog = document.createElement( 'div' );
 	dialog.classList.add( 'geiryn-dialog' );
-	var header = document.createElement( 'div' );
+	var header = document.createElement( 'h1' );
 	header.classList.add( 'geiryn-dialog-header' );
 	header.innerText = headerText;
 	var closeButton = document.createElement( 'button' );

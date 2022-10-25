@@ -104,6 +104,7 @@ body {
 	font-size: 250%;
 	background-color: white;
 	padding-left: 2em;
+	margin: 0;
 }
 .geiryn-dialog-header-closeButton {
 	min-height: 2em;
@@ -123,21 +124,32 @@ body {
 }
 
 .geiryn-messageBox-congratulate-contents {
-	font-size: 250%;
+	font-size: 130%;
+}
+
+.geiryn-messageBox-congratulate-emojis {
+	font-size: 200%;
+	margin-bottom: 0;
 }
 
 .geiryn-dialog-contents-shareButton {
 	min-height: 2.5em;
 	min-width: 9em;
-	font-size: 50%;
+	font-size: 130%;
 	margin-top: 2em;
-	border-color: lightgray;
-	background-color: whitesmoke;
-	color: black;
+	border: none;
+	background-color: #6a6;
+	color: white;
+	border-radius: 1em;
 	cursor: pointer;
 }
+
 .geiryn-dialog-contents-shareButton:hover {
-	background-color: white;
+	border: solid #080 2px;
+}
+
+.geiryn-messageBox-congratulate-acknowledgements {
+	margin-top: 2em;
 }
 @media screen and (orientation: portrait) and (max-width: 991px) {
 	body {
