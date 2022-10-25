@@ -187,10 +187,8 @@ geiryn.View.prototype.showToast = function ( text ) {
 	var toast = this.toast;
 	toast.innerText = text;
 	toast.style.opacity = 1;
-	toast.style.zIndex = 2;
 	setTimeout( function () {
 		toast.style.opacity = 0;
-		toast.style.zIndex = -1;
 	}, 3000 );
 };
 

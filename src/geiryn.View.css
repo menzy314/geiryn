@@ -87,6 +87,7 @@ body {
 
 .geiryn-toast {
 	position: fixed;
+	z-index: 1;
 	opacity: 0;
 	transition: opacity 1s;
 	text-align: center;
