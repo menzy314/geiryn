@@ -16,8 +16,12 @@ geiryn.View = function ( model ) {
 	this.keyboard = document.createElement( 'div' );
 	this.keyboard.classList.add( 'geiryn-keyboard' );
 
+	this.toast = document.createElement( 'div' );
+	this.toast.classList.add( 'geiryn-toast' );
+
 	this.game.appendChild( this.board );
 	this.game.appendChild( this.keyboard );
+	this.game.appendChild( this.toast );
 
 	window.addEventListener( 'keydown', this.onKeyDown.bind( this ) );
 	this.keyboard.addEventListener( 'click', this.onClick.bind( this ) );
@@ -181,6 +185,17 @@ geiryn.View.prototype.createKeyboardKey = function ( keyboardRow, letter ) {
 	keyboardRow.appendChild( keyboardKey );
 };
 
+geiryn.View.prototype.showToast = function ( text ) {
+	var toast = this.toast;
+	toast.innerText = text;
+	toast.style.opacity = 1;
+	toast.style.zIndex = 2;
+	setTimeout( function () {
+		toast.style.opacity = 0;
+		toast.style.zIndex = -1;
+	}, 3000 );
+};
+
 /**
  * Submit the guess
  *
@@ -222,6 +237,7 @@ geiryn.View.prototype.greet = function () {
 };
 
 geiryn.View.prototype.congratulate = function () {
+	var view = this;
 	var contents = document.createElement( 'div' );
 	contents.classList.add( 'geiryn-messageBox-congratulate-contents' );
 
@@ -241,6 +257,7 @@ geiryn.View.prototype.congratulate = function () {
 			emojis + '\n' +
 			'geiryn.com'
 		);
+		view.showToast( 'Wedi’i gopïo!' );
 	} );
 
 	var acknowledgments = document.createElement( 'div' );

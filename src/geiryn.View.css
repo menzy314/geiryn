@@ -85,6 +85,22 @@ body {
 	vertical-align: middle;
 }
 
+.geiryn-toast {
+	position: fixed;
+	opacity: 0;
+	transition: opacity 1s;
+	text-align: center;
+	top: 1em;
+	left: 3em;
+	right: 3em;
+	height: 2em;
+	background-color: black;
+	color: white;
+	line-height: 2em;
+	font-size: 150%;
+	border-radius: 1em;
+}
+
 .geiryn-dialog {
 	position: fixed;
 	overflow-y: scroll;
