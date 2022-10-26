@@ -91,7 +91,7 @@ Dwi wedi creu’r fersiwn yma i ymarfer codio, a hefyd i arbrofi â newid y rheo
 
 # Trwydded
 
-Hawlfraint (c) 2022, menzy314.
+Hawlfraint © 2022, menzy314.
 
 Mae'r rhaglen hon yn feddalwedd rhydd; gallwch ei hailddosbarthu a/neu
 ei haddasu dan delerau trwydded MIT. Mae'r rhaglen hon yn cael ei dosbarthu yn y gobaith y bydd yn ddefnyddiol, ond HEB UNRHYW WARANT; heb hyd yn oed y warant oblygedig o FARSIANDWYAETH neu FFITRWYDD AT BWRPAS ARBENNIG. Gweler [y drwydded](LICENSE.txt) am ragor o fanylion.
@@ -176,7 +176,7 @@ Another way of saying this is that the game automatically accents / de-accents w
 
 I think it's better that the game places them automatically. Many people are used to typing informal Welsh without accents. Some of these people don't understand accents that well, so the game will be less frustrating for them if it accepts their answers. But it also teaches them about accents, in a fun way.
 
-Another factor is the popular strategy of guessing the vowels early. In English there are six vowels **AEIOU**(**Y**), so it is possible to guess **WEARY** and **PIOUS** (or other words) to prove them all in two guesses.
+Another factor is the popular strategy of guessing the vowels early. In English there are six vowels **AEIOU**(**Y**), so it is possible to guess **WEARY** and **PIOUS** (or other words) to test them all in two guesses.
 
 How about in Welsh? We can guess **DELIO** and **LLWYAU** to test the seven vowels **AEIOUWY**. But is that all the vowels? How about **ÂÊÎÔÛŴŶ**? Also **ÄËÏÖÜẄŸ**, **ÁÉÍÓÚẂÝ** and **ÀÈÌÒÙẀỲ**. If we count these as separate letters, then there will be 7 × 5 = 35 vowels in the language(!), many of them very, very rare. In my opinion, that makes the game less fun. It would be impossible to test all the accented vowels in six guesses!
 
@@ -193,12 +193,11 @@ This is my main inspiration, along with the original English game, Wordle.
 
 I've created this version to practice coding, and also to experiment with changing the rules a little (see above!)
 
-# License
+# Licence
 
-Copyright (c) 2022, menzy314.
+Copyright © 2022, menzy314.
 
-This program is free software; you can redistribute and/or modify it under the terms of the MIT license. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See [the license](LICENSE.txt) for more details.
+This program is free software; you can redistribute and/or modify it under the terms of the MIT licence. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See [the licence](LICENSE.txt) for more details.
 
 # Acknowledgments
 Language Technologies Unit, Bangor University, for providing [Lecsicon Cymraeg Bangor](https://github.com/techiaith/lecsicon-cymraeg-bangor). Geiryn contains data from the lexicon.
-
