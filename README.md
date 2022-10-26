@@ -64,7 +64,7 @@ Yn yr enghraifft hon, mae'r **Ŵ** yn **BAMBŴ** wedi troi yn wyrdd, oherwydd ma
 
 Byddai'r fysell **W** ar y bysellfwrdd wedi troi yn wyrdd hefyd. Hynny yw, rwyt ti'n dyfalu **W** ac **Ŵ** ar yr un pryd.
 
-Enghraifft arall: os mae **CYTÛN** yw’r ateb, ac rwyt ti'n dyfalu **UNDEB**, wedyn bydd yr **U** yn troi'n oren.
+Enghraifft arall: os mai **CYTÛN** yw’r ateb, ac rwyt ti'n dyfalu **UNDEB**, wedyn bydd yr **U** yn troi'n oren.
 
 Ffordd arall o ddweud hyn yw bod y gêm yn acennu / dadacennu geiriau yn awtomatig i ti.
 
