@@ -212,19 +212,11 @@ geiryn.View.prototype.submitGuess = function () {
 geiryn.View.prototype.greet = function () {
 	var contents = document.createElement( 'div' );
 	contents.classList.add( 'geiryn-messageBox-greet-contents' );
-	contents.innerHTML = (
-		'<p>Dyfala air Cymraeg pump llythyren, er enghraifft:</p>\n' +
-		'<img class="geiryn-image" src="../res/theatr.png">\n' +
-		'<p>Mae’r <strong>R</strong> werdd yn golygu bod yr ateb yn cynnwys <strong>R</strong> yn yr un safle.</p>\n' +
-		'<p>Mae’r <strong>A</strong> a <strong>T</strong> oren yn golygu bod yr ateb yn cynnwys <strong>A</strong> a <strong>T</strong>, ond ddim yn yr un safle.</p>\n' +
-		'<p>Mae’r <strong>TH</strong> a <strong>E</strong> llwyd yn golygu nad yw’r ateb yn cynnwys <strong>TH</strong> neu <strong>E</strong> o gwbl.</p>\n' +
-		'<p>Caria ymlaen yn dyfalu geiriau, er enghraifft:<p>\n' +
-		'<img class="geiryn-image" src="../res/actor.png">\n' +
-		'<p>Nawr mae <strong>T</strong> a <strong>R</strong> yn y lle cywir, ac mae <strong>A</strong> yn y lle anghywir.\n' +
-		'</p>\n' +
-		'<img class="geiryn-image" src="../res/gitar.png">\n' +
-		'<p>Cywir! Mae pob un llythyren yn gywir.</p>'
-	);
+	fetch( '../res/greet.html' ).then( function ( response ) {
+		return response.text();
+	} ).then( function ( html ) {
+		contents.innerHTML = html;
+	} );
 	var messageBox = geiryn.createMessageBox( 'Sut i chwarae', contents );
 	document.body.appendChild( messageBox );
 	setTimeout( function () {
@@ -258,7 +250,12 @@ geiryn.View.prototype.congratulate = function () {
 
 	var acknowledgments = document.createElement( 'div' );
 	acknowledgments.classList.add( 'geiryn-messageBox-congratulate-acknowledgements' );
-	acknowledgments.innerHTML = '<h2>Diolchiadau</h2><p>Uned Technolegau Iaith, Prifysgol Bangor, am ddarparu <a href="https://github.com/techiaith/lecsicon-cymraeg-bangor" target="_blank">Lecsicon Cymraeg Bangor</a>. Mae Geiryn yn cynnwys data o’r lecsicon.</p><p>Gweler y <a href="https://github.com/menzy314/geiryn" target="_blank">cod ar GitHub</a>.</p>';
+
+	fetch( '../res/congratulate.html' ).then( function ( response ) {
+		return response.text();
+	} ).then( function ( html ) {
+		acknowledgments.innerHTML = html;
+	} );
 
 	contents.appendChild( shareButton );
 	var messageBox = geiryn.createMessageBox( 'Sgôr', contents );

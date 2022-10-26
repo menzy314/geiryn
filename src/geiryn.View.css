@@ -107,13 +107,15 @@ body {
 	overflow-y: scroll;
 	top: 10%;
 	bottom: 10%;
-	left: 10%;
-	right: 10%;
+	left: 0;
+	right: 0;
 	width: 80%;
+	max-width: 60em;
 	height: 80%;
 	background-color: white;
 	box-shadow: 0 0 0.5em gray;
 	border-radius: 0.5em;
+	margin: 0 auto;
 	opacity: 0;
 	transition: opacity 0.25s;
 }
@@ -139,14 +141,9 @@ body {
 	cursor: pointer;
 }
 
-.geiryn-messageBox-greet-contents {
+.geiryn-messageBox-greet-contents, .geiryn-messageBox-congratulate-contents {
 	font-size: 130%;
-	text-align: center;
-	margin-left: 2em;
-}
-
-.geiryn-messageBox-congratulate-contents {
-	font-size: 130%;
+	padding: 0 1em 1em 1em;
 }
 
 .geiryn-messageBox-congratulate-emojis {
@@ -181,6 +178,11 @@ body {
 .geiryn-messageBox-congratulate-acknowledgements {
 	margin-top: 2em;
 }
+
+.geiryn-language-link {
+	padding-top: 4em;
+}
+
 @media screen and (orientation: portrait) and (max-width: 991px) {
 	body {
 		overscroll-behavior-y: contain;
