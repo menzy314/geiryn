@@ -10,7 +10,7 @@
 
 Dyfala air Cymraeg pump llythyren, er enghraifft:
 
-![theatr](theatr.png)
+![theatr](res/theatr.png)
 
 - Mae'r **R** werdd yn golygu bod yr ateb yn cynnwys **R** yn yr un safle.
 - Mae'r **A** a **T** oren yn golygu bod yr ateb yn cynnwys **A** a **T**, ond ddim yn yr un safle.
@@ -18,11 +18,11 @@ Dyfala air Cymraeg pump llythyren, er enghraifft:
 
 Caria ymlaen yn dyfalu geiriau, er enghraifft:
 
-![actor](actor.png)
+![actor](res/actor.png)
 
 Nawr mae **T** a **R** yn y lle cywir, ac mae **A** yn y lle anghywir.
 
-![gitar](gitar.png)
+![gitar](res/gitar.png)
 
 Cywir! Mae pob un llythyren yn gywir.
 
@@ -42,7 +42,7 @@ Byddai, symlach i'w godio, ond ddim i'w chwarae. Yn Gymraeg, dydy llythrennau dw
 
 Byddai cael gwared ar y syniad o lythrennau dwbl yn gorfodi i bobl feddwl mewn ffordd anghymreigaidd. Er enghraifft:
 
-![hawdd charu](hawdd-charu.png)
+![hawdd charu](res/hawdd-charu.png)
 
 Dydy hyn ddim yn ffitio'r ffordd mae pobl yn meddwl amdan sillafu Cymraeg: mae **CH** yn llythyren wahanol i **C** neu **H**.
 
@@ -52,15 +52,15 @@ Mae acenion yn cael ei gynnwys yn awtomatig.
 
 Er enghraifft: os wyt ti'n teipio
 
-![bambw](bambw-diacen.png)
+![bambw](res/bambw-diacen.png)
 
 (bambŵ ond heb acen) bydd o'n ymddangos fel
 
-![bambŵ](bambw-acen.png)
+![bambŵ](res/bambw-acen.png)
 
 Yn yr enghraifft hon, mae'r **Ŵ** yn **BAMBŴ** wedi troi yn wyrdd, oherwydd mae'n troi allan bod yr ateb yn cynnwys **W** fel y llythyren olaf:
 
-![ceirw](ceirw.png)
+![ceirw](res/ceirw.png)
 
 Byddai'r fysell **W** ar y bysellfwrdd wedi troi yn wyrdd hefyd. Hynny yw, rwyt ti'n dyfalu **W** ac **Ŵ** ar yr un pryd.
 
@@ -80,7 +80,7 @@ Beth am yn Gymraeg? Gallwn ni ddyfalu **DELIO** a **LLWYAU** i brofi'r saith lla
 
 Oes, mae'n bosib eu dyfalu nhw. Ond nid ydyn nhw'n gallu bod yr ateb. Serch hynny, gallai eu dyfalu nhw fod yn help mawr wrth geisio profi llythrennau penodol. Er enghraifft:
 
-![agwedd gopïa gitâr](agwedd-gopia-gitar.png)
+![agwedd gopïa gitâr](res/agwedd-gopia-gitar.png)
 
 ## Ai dyma'r gêm gyntaf o'i fath mewn Cymraeg?
 
@@ -112,19 +112,20 @@ Mae Geiryn yn cynnwys data o'r lecsicon.
 
 Guess a five letter Welsh word, for example:
 
-![theatr](theatr.png)
+![theatr](res/theatr.png)
 
 - The green **R** means that the answer contains **R** in the same position.
 - The orange **A** and **T** means that the answer contains **A** and **T**, but not in the same position.
 - The grey **TH** and **E** means that the answer does not contain **TH** or **E** at all.
 
+
 Keep guessing words, for example:
 
-![actor](actor.png)
+![actor](res/actor.png)
 
 Now **T** and **R** are in the right place, and **A** is in the wrong place.
 
-![gitar](gitar.png)
+![gitar](res/gitar.png)
 
 Correct! All letters are correct.
 
@@ -145,7 +146,7 @@ Yes, simpler to code, but not to play. In Welsh, double letters do not include t
 
 Getting rid of the idea of ​​double letters would force people to think in a non-Welsh way. For example:
 
-![hawdd charu](hawdd-charu.png)
+![hawdd charu](res/hawdd-charu.png)
 
 This does not fit the way people think about Welsh spelling: **CH** is a different letter to **C** or **H**.
 
@@ -155,15 +156,15 @@ Accents are included automatically.
 
 For example: if you type
 
-![bambw](bambw-diacen.png)
+![bambw](res/bambw-diacen.png)
 
 (bambŵ but without the accent) it will appear as
 
-![bambŵ](bambw-acen.png)
+![bambŵ](res/bambw-acen.png)
 
 In this example, the **Ŵ** in **BAMBŴ** has turned green, because it turns out that the answer contains **W** as the last letter:
 
-![ceirw](ceirw.png)
+![ceirw](res/ceirw.png)
 
 The **W** key on the keyboard would also have turned green. That is, you guess **W** and **Ŵ** at the same time.
 
@@ -183,7 +184,7 @@ How about in Welsh? We can guess **DELIO** and **LLWYAU** to test the seven vowe
 
 Yes, it is possible to guess them. But they can't be the answer. However, guessing them could be of great help when trying to test certain letters. For example:
 
-![agwedd gopïa gitâr](agwedd-gopia-gitar.png)
+![agwedd gopïa gitâr](res/agwedd-gopia-gitar.png)
 
 ## Is this the first game of its kind in Welsh?
 
