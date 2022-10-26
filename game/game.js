@@ -1,6 +1,7 @@
 /* global cyrb53 */
 
-geiryn.fetchDailyText = function () {
+geiryn.fetchPeriodicText = function () {
+	// Text that changes unpredictably every few hours
 	return fetch( 'http://www.floatrates.com/daily/gbp.json', { mode: 'cors' } ).then( function ( request ) {
 		return request.text();
 	} );
@@ -16,7 +17,11 @@ geiryn.demo = function ( seed ) {
 	geiryn.v.greet();
 };
 
-geiryn.fetchDailyText().then( function ( dailyText ) {
-	var dailySeed = cyrb53( dailyText );
-	geiryn.demo( dailySeed );
+geiryn.fetchPeriodicText().then( function ( periodicText ) {
+	var seed = cyrb53( periodicText );
+	geiryn.demo( seed );
+} ).catch( function () {
+	// Seed that changes every four hours
+	var seed = cyrb53( Math.floor( Date.now() / 1000 / 60 / 60 / 4 ) );
+	geiryn.demo( seed );
 } );
