@@ -258,12 +258,12 @@ geiryn.View.prototype.congratulate = function () {
 	} );
 
 	contents.appendChild( shareButton );
+	contents.appendChild( acknowledgments );
 	var messageBox = geiryn.createMessageBox( 'Sgôr', contents );
 	document.body.appendChild( messageBox );
 	setTimeout( function () {
 		messageBox.style.opacity = '1';
 	} );
-	contents.appendChild( acknowledgments );
 };
 
 geiryn.createMessageBox = function ( headerText, contents ) {
