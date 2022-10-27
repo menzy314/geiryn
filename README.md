@@ -8,13 +8,13 @@
 
 # Sut i chwarae
 
-Dyfala air Cymraeg pump llythyren, er enghraifft:
+Dyfala air Cymraeg pum llythyren, er enghraifft:
 
 ![theatr](res/theatr.png)
 
 - Mae'r **R** werdd yn golygu bod yr ateb yn cynnwys **R** yn yr un safle.
 - Mae'r **A** a **T** oren yn golygu bod yr ateb yn cynnwys **A** a **T**, ond ddim yn yr un safle.
-- Mae'r **TH** a **E** llwyd yn golygu nad yw'r ateb yn cynnwys **TH** neu **E** o gwbl.
+- Mae'r **TH** ac **E** llwyd yn golygu nad yw'r ateb yn cynnwys **TH** nac **E** o gwbl.
 
 Caria ymlaen yn dyfalu geiriau, er enghraifft:
 
@@ -70,7 +70,7 @@ Ffordd arall o ddweud hyn yw bod y gêm yn acennu / dadacennu geiriau yn awtomat
 
 ## Pam lai gorfodi i bobl roi acenion â llaw?
 
-Dwi'n meddwl bod hi'n well bod y gêm yn eu rhoi nhw'n awtomatig. Mae llawer o bobl wedi arfer teipio Cymraeg anffurfiol heb acenion. Dydy rhai o'r bobl yma ddim yn deall acennu mor dda, felly bydd y gêm yn llai rhwystredig iddyn nhw os ydy hi'n derbyn eu hatebion. Ond mae hefyd yn dysgu nhw amdan acenion, mewn ffordd hwyl.
+Dwi'n meddwl bod hi'n well bod y gêm yn eu rhoi nhw'n awtomatig. Mae llawer o bobl wedi arfer teipio Cymraeg anffurfiol heb acenion. Dydy rhai o'r bobl yma ddim yn deall acennu mor dda, felly bydd y gêm yn llai rhwystredig iddyn nhw os ydy hi'n derbyn eu hatebion. Ond mae hefyd yn eu dysgu nhw amdan acenion, mewn ffordd hwyl.
 
 Ffactor arall yw'r strategaeth boblogaidd o ddyfalu'r llafariaid yn gynnar. Yn Saesneg mae yna chwe llafariad **AEIOU**(**Y**), felly mae modd dyfalu **WEARY** a **PIOUS** (neu eiriau eraill) i'w profi i gyd mewn dau ddyfaliad.
 
