@@ -22,7 +22,7 @@ Caria ymlaen yn dyfalu geiriau, er enghraifft:
 
 Nawr mae **T** a **R** yn y lle cywir, ac mae **A** yn y lle anghywir.
 
-![gitar](res/gitar.png)
+![gitâr](res/gitar.png)
 
 Cywir! Mae pob un llythyren yn gywir.
 
