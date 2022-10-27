@@ -11,7 +11,7 @@ QUnit.module( 'geiryn.Model' );
 QUnit.test( 'constructor', function ( assert ) {
 	var m = new geiryn.Model( 'leery' );
 	assert.deepEqual( m.guesses, [], 'nothing guessed yet' );
-	assert.deepEqual( m.keyStates, {}, 'no letter states yet' );
+	assert.deepEqual( m.keyStates, {}, 'no key states yet' );
 	assert.deepEqual( m.answer, 'leery', 'the answer is stored correctly' );
 } );
 
@@ -24,7 +24,7 @@ QUnit.test( 'guess', function ( assert ) {
 		[ geiryn.buildLetterScores( [ 'a', 'ch', 'w', 'y', 'n' ], [ 1, 1, 0, 0, 0 ] ) ],
 		'only the real word is stored as a guess'
 	);
-	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0 }, 'letter states are updated' );
+	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0 }, 'key states are updated' );
 	m.guess( [ 'b', 'r', 'e', 'ch', 'u' ] );
 	assert.deepEqual(
 		m.guesses,
@@ -34,7 +34,7 @@ QUnit.test( 'guess', function ( assert ) {
 		],
 		'only the real words are stored as a guess'
 	);
-	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0, b: 2, r: 0, e: 0, u: 2 }, 'letter states are updated' );
+	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0, b: 2, r: 0, e: 0, u: 2 }, 'key states are updated' );
 	m.guess( [ 'g', 'r', 'a', 'w', 'n' ] );
 	assert.deepEqual(
 		m.guesses,
@@ -45,7 +45,22 @@ QUnit.test( 'guess', function ( assert ) {
 		],
 		'only the real words are stored as a guess'
 	);
-	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0, b: 2, r: 0, e: 0, u: 2, g: 0 }, 'letter states are updated' );
+	assert.deepEqual( m.keyStates, { a: 1, ch: 1, w: 0, y: 0, n: 0, b: 2, r: 0, e: 0, u: 2, g: 0 }, 'key states are updated' );
+} );
+
+QUnit.test( 'guess (accented)', function ( assert ) {
+	var m = new geiryn.Model( [ 'g', 'i', 't', 'â', 'r' ] );
+	m.guess( [ 'th', 'e', 'a', 't', 'r' ] );
+	m.guess( [ 'a', 'c', 't', 'o', 'r' ] );
+	assert.deepEqual(
+		m.guesses,
+		[
+			geiryn.buildLetterScores( [ 'th', 'e', 'a', 't', 'r' ], [ 0, 0, 1, 1, 2 ] ),
+			geiryn.buildLetterScores( [ 'a', 'c', 't', 'o', 'r' ], [ 1, 0, 2, 0, 2 ] )
+		],
+		'letters are scored ignoring accents'
+	);
+	assert.deepEqual( m.keyStates, { th: 0, e: 0, a: 1, t: 2, r: 2, c: 0, o: 0 }, 'key states are updated ignoring accents' );
 } );
 
 QUnit.test( 'pushLetter', function ( assert ) {
