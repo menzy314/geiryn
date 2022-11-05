@@ -73,7 +73,32 @@ geiryn.Model.prototype.pushLetter = function ( letter ) {
 	if ( this.nextGuess.length < 5 ) {
 		this.nextGuess.push( lowerLetter );
 		if ( lowerLetter.match( /^[cdfnlrt]$/ ) ) {
-			this.maybeDigraph = true;
+			// Usually ng is a double letter, but there are some exceptions, below.
+			// In these exceptions we don't set maybeDigraph to true, so that the
+			// player can easily type the exceptional words with separate n+g.
+			// In cyShortlist:
+			// 'b i n g o',
+			// 'j y n g l',
+			// 'm a n g o',
+			// 't a n g o',
+			// 'u n g e ll'
+			// There happen to be no words starting with b i ng, j y ng, m a ng, t a ng, or u ng.
+			// In cyLonglist (not including shortlist ones):
+			// 'd a n g o',
+			// 'e n g l o',
+			// 'f a n g o',
+			// 'f i n g o',
+			// 'i n g o t',
+			// 'j i n g o',
+			// 'm i n g o',
+			// 'th a n g o',
+			// There are no words starting with f a ng, f i ng, j i ng, m i ng, or th a ng
+			// But the words d a ng o s, e ng l y n, and i ng o e dd exist, so we set
+			// maybeDigraph to true as normal if the user typed d a n, e n, or i n.
+			// TODO: unit test this logic!
+			if ( !this.nextGuess.join( '' ).match( /^(bin|fan|fin|jin|jyn|man|min|tan|than|un)$/ ) ) {
+				this.maybeDigraph = true;
+			}
 		}
 	}
 };
